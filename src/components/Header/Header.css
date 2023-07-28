@@ -1,0 +1,34 @@
+.header__container {
+  padding: 29px 70px;
+  background-color: #F3C1F8;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* link */
+.header__logo-link {
+  transition: opacity 0.3s ease;
+}
+
+.header__logo-link:hover {
+  opacity: .8;
+}
+
+.header__buttons {
+  display: flex;
+  gap: 30px;
+}
+
+.header__button {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  background: transparent;
+}
+
+.header__button_fill_dark {
+  padding: 8px 20px;
+  border-radius: 3px;
+  background: #000;
+  color: #fff;
+}
