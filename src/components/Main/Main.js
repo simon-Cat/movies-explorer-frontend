@@ -1,9 +1,11 @@
-import { Promo } from '../index';
+import './Main.css';
+import { Promo, AboutProject } from '../index';
 
 const Main = () => {
   return (
-    <main>
+    <main className='main-container'>
       <Promo />
+      <AboutProject />
     </main>
   )
 };
