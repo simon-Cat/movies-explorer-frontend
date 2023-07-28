@@ -18,6 +18,7 @@ import SavedMovies from './SavedMovies/SavedMovies';
 import SearchFrom from './SearchForm/SearchForm';
 import Techs from './Techs/Techs';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
+import Button from './Button/Button';
 
 export {
   App,
@@ -40,4 +41,5 @@ export {
   SearchFrom,
   Techs,
   NotFoundPage,
+  Button,
 };
