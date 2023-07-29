@@ -1,9 +1,9 @@
 import './Main.css';
 import { Promo, AboutProject, Techs, AboutMe } from '../index';
 
-const Main = () => {
+const Main = ({ externalClass }) => {
   return (
-    <main className='main-container'>
+    <main className={`main-container ${externalClass}`}>
       <Promo />
       <AboutProject />
       <Techs />

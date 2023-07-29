@@ -1,19 +1,9 @@
 import './Footer.css';
+import { links } from '../../utils/data'
 
-const links = [
-  {
-    title: 'Яндекс.Практикум',
-    url: 'https://practicum.yandex.ru/',
-  },
-  {
-    title: 'Github',
-    url: 'https://github.com/simon-Cat'
-  }
-];
-
-const Footer = () => {
+const Footer = ({ externalClass }) => {
   return (
-    <footer className='footer-container'>
+    <footer className={`footer-container ${externalClass}`}>
       <p className='footer-container__title'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
       <div className='footer-container__about'>
         <span className='footer-container__copyright'>&#169; 2023</span>

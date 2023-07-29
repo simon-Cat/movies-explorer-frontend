@@ -5,9 +5,9 @@ import { Header, Main, Footer, NotFoundPage } from '../';
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Main />
-      <Footer />
+      <Header externalClass='app__header-container' />
+      <Main externalClass='app__main-container' />
+      <Footer externalClass='app__footer-container' />
       {/* <NotFoundPage /> */}
       <Routes>
         <Route path='/' />

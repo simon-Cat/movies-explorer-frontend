@@ -12,7 +12,7 @@ const AboutMe = () => {
           <p className='about-me-container__my-post'>Веб-разработчик, 32 года</p>
           <p className='about-me-container__about-me'>Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена
 и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
-          <a href='https://github.com/simon-Cat' className='about-me-container__github-link'>Github</a>
+          <a href='https://github.com/simon-Cat' target='_blank' rel='noreferrer' className='about-me-container__github-link'>Github</a>
         </div>
         <div className='about-me-container__image-container'>
           <img className='about-me-container__image' src={studentImage} alt='Student' />

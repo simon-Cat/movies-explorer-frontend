@@ -36,6 +36,7 @@
 
 .techs-container__tech-list {
   display: flex;
+  list-style: none;
   justify-content: space-evenly;
   column-gap: 10px;
 }

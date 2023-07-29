@@ -1,6 +1,5 @@
 import './Techs.css';
-
-const technologies = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
+import { technologies } from '../../utils/data'
 
 const Techs = () => {
   return (
@@ -9,11 +8,11 @@ const Techs = () => {
       <section className='techs-container__content'>
         <h3 className='techs-container__subtitle'>7 технологий</h3>
         <p className='techs-container__description'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
-        <div className='techs-container__tech-list'>
-          {technologies.map(item => (
-            <div className='techs-container__tech-item'>{item}</div>
+        <ul className='techs-container__tech-list'>
+          {technologies.map((item, index) => (
+            <li key={index} className='techs-container__tech-item'>{item}</li>
           ))}
-        </div>
+        </ul>
       </section>
     </section>
   );

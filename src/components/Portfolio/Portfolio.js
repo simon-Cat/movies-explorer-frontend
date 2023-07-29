@@ -1,19 +1,5 @@
 import './Portfolio.css';
-
-const portfolio = [
-  {
-    title: 'Статичный сайт',
-    url: '#',
-  },
-  {
-    title: 'Адаптивный сайт',
-    url: '#',
-  },
-  {
-    title: 'Одностраничное приложение',
-    url: '#',
-  },
-];
+import { portfolio } from '../../utils/data'
 
 const Portfolio = () => {
   return (
@@ -23,7 +9,7 @@ const Portfolio = () => {
         {portfolio.map((item, index) => (
           <li key={index} className='portfolio-container__item'>
             <span className='portfolio-container__item-title'>{item.title}</span>
-            <a className='portfolio-container__item-url' href={item.url} />
+            <a className='portfolio-container__item-url' href={item.url} target='_blank' rel="noreferrer" />
           </li>
         ))}
       </ul>
