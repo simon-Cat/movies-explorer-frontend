@@ -1,0 +1,39 @@
+.portfolio-container {
+
+}
+
+.portfolio-container__title {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #A0A0A0;
+  margin-bottom: 50px;
+}
+
+.portfolio-container__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.portfolio-container__item {
+  display: flex;
+  padding-bottom: 19px;
+  border-bottom: 1px #E8E8E8 solid;
+  justify-content: space-between;
+}
+
+.portfolio-container__item-title {
+  font-size: 30px;
+  line-height: 50px;
+  font-weight: 400;
+}
+
+.portfolio-container__item-url {
+  display: block;
+  max-width: 29px;
+  width: 100%;
+  height: 60px;
+  background: url('../../images/icons/arrow_link-min.svg') no-repeat center;
+}

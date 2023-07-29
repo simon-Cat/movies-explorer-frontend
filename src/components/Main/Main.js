@@ -1,5 +1,5 @@
 import './Main.css';
-import { Promo, AboutProject, Techs } from '../index';
+import { Promo, AboutProject, Techs, AboutMe } from '../index';
 
 const Main = () => {
   return (
@@ -7,6 +7,7 @@ const Main = () => {
       <Promo />
       <AboutProject />
       <Techs />
+      <AboutMe />
     </main>
   )
 };
