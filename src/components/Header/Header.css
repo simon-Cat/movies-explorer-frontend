@@ -14,3 +14,9 @@
 .header-container__logo-link:hover {
   opacity: .8;
 }
+
+@media screen and (max-width: 1100px) {
+  .header-container {
+    padding: 18px 30px;
+  }
+}
