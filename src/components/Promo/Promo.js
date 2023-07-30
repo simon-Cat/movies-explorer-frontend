@@ -11,7 +11,7 @@ const Promo = () => {
         </div>
         <img src={promo_img} alt='Promo' />
       </div>
-      <button className='promo-container__button'>Узнать больше</button>
+      <a className='promo-container__link' href='#about-project'>Узнать больше</a>
     </section>
   );
 };

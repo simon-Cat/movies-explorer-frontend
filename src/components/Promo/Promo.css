@@ -23,8 +23,9 @@
   opacity: .5;
 }
 
-.promo-container__button {
-  font-size: 12;
+.promo-container__link {
+  display: inline-block;
+  font-size: 12px;
   font-weight: 500;
   line-height: 16px;
   background-color: transparent;
