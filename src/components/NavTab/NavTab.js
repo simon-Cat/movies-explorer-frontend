@@ -1,7 +1,7 @@
 import './NavTab.css';
 import { navLinks } from '../../utils/data';
 
-const NavTab = ({ externalClass, isSignin=true }) => {
+const NavTab = ({ externalClass, isSignin=false }) => {
   return (
     <>
       { isSignin ? (

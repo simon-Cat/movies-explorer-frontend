@@ -48,6 +48,7 @@
 .about-me-container__image-container {
   max-width: 270px;
   height: 327px;
+  flex-shrink: 0;
 }
 
 .about-me-container__image {
@@ -55,4 +56,40 @@
   object-fit: cover;
   height: 327px;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+  .about-me-container {
+    padding: 90px 50px;
+  }
+
+  .about-me-container__content {
+    margin-bottom: 91px;
+  }
+
+  .about-me-container__student-info {
+    max-width: 364px;
+  }
+
+  .about-me-container__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .about-me-container__my-post {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 18px;
+  }
+
+  .about-me-container__about-me {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 87px;
+  }
+
+  .about-me-container__image {
+    max-width: 255px;
+    height: 307px;
+  }
 }

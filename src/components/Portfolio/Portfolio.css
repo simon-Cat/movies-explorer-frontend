@@ -1,12 +1,11 @@
 .portfolio-container {
-
 }
 
 .portfolio-container__title {
   font-size: 18px;
   line-height: 20px;
   font-weight: 400;
-  color: #A0A0A0;
+  color: #a0a0a0;
   margin-bottom: 50px;
 }
 
@@ -20,7 +19,7 @@
 .portfolio-container__item {
   display: flex;
   padding-bottom: 19px;
-  border-bottom: 1px #E8E8E8 solid;
+  border-bottom: 1px #e8e8e8 solid;
   justify-content: space-between;
 }
 
@@ -34,5 +33,15 @@
   max-width: 29px;
   width: 100%;
   height: 60px;
-  background: url('../../images/icons/arrow_link-min.svg') no-repeat center;
+  background: url("../../images/icons/arrow_link-min.svg") no-repeat center;
+}
+
+@media screen and (max-width: 1100px) {
+  .portfolio-container__item-title {
+    font-size: 28px;
+  }
+
+  .portfolio-container__item-icon {
+    max-width: 27px;
+  }
 }

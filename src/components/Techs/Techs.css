@@ -42,10 +42,37 @@
 }
 
 .techs-container__tech-item {
-  padding: 22px 26px;
+  width: 90px;
+  padding: 22px 0;
   background: #E8E8E8;
   font-size: 14px;
   font-weight: 400;
   text-align: center;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+  .techs-container {
+    padding: 90px 50px;
+  }
+
+  .techs-container__title {
+    margin-bottom: 80px;
+  }
+
+  .techs-container__subtitle {
+    margin-bottom: 22px;
+  }
+
+  .techs-container__description {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 83px;
+  }
+
+  .techs-container__tech-item {
+    font-size: 12px;
+    width: 84px;
+    padding: 21px 0;
+  }
 }
