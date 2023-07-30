@@ -28,3 +28,15 @@ export const links = [
     url: 'https://github.com/simon-Cat'
   }
 ];
+
+// data for NavTab
+export const navLinks = [
+  {
+    title: 'Фильмы',
+    url: '#',
+  },
+  {
+    title: 'Сохранённые фильмы',
+    url: '#',
+  }
+];
