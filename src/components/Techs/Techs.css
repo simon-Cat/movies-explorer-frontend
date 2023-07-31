@@ -38,7 +38,7 @@
   display: flex;
   list-style: none;
   justify-content: space-evenly;
-  column-gap: 10px;
+  gap: 10px;
 }
 
 .techs-container__tech-item {
@@ -74,5 +74,36 @@
     font-size: 12px;
     width: 84px;
     padding: 21px 0;
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .techs-container {
+    padding: 70px 18px;
+    background: #fff;
+  }
+
+  .techs-container__title {
+    font-size: 18px;
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+  }
+
+  .techs-container__subtitle {
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+
+  .techs-container__description {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 50px;
+    max-width: 292px;
+  }
+
+  .techs-container__tech-list {
+    max-width: 178px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 }
