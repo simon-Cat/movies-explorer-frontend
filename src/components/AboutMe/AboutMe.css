@@ -43,6 +43,7 @@
 
 .about-me-container__github-link {
   font-size: 14px;
+  font-weight: 500;
 }
 
 .about-me-container__image-container {
@@ -54,7 +55,7 @@
 .about-me-container__image {
   width: 100%;
   object-fit: cover;
-  height: 327px;
+  height: 100%;
   border-radius: 10px;
 }
 
@@ -88,8 +89,54 @@
     margin-bottom: 87px;
   }
 
-  .about-me-container__image {
+  .about-me-container__image-container {
     max-width: 255px;
     height: 307px;
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .about-me-container {
+    padding: 70px 14px;
+  }
+
+  .about-me-container__title {
+    font-size: 18px;
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+  }
+
+  .about-me-container__content {
+    flex-direction: column-reverse;
+    gap: 40px;
+    margin-bottom: 70px;
+  }
+
+  .about-me-container__name {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .about-me-container__my-post {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 20px;
+  }
+
+  .about-me-container__about-me {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 40px;
+    max-width: 292px;
+  }
+
+  .about-me-container__image-container {
+    max-width: 292px;
+    height: 352px;
+  }
+
+  .portfolio-container__title {
+    font-size: 14px;
+    margin-bottom: 40px;
   }
 }
