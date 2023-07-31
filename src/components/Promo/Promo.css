@@ -87,3 +87,28 @@
     text-align: center;
   }
 }
+
+@media screen and (max-width: 665px) {
+  .promo-container {
+    padding: 70px 10px 30px;
+  }
+
+  .promo-container__content {
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .promo-container__image {
+    max-width: 210px;
+    height: 206px;
+    margin-bottom: 44px;
+  }
+
+  .promo-container__title {
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 24px;
+    max-width: 310px;
+  }
+}
