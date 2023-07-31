@@ -20,3 +20,9 @@
     padding: 18px 30px;
   }
 }
+
+@media screen and (max-width: 670px) {
+  .header-container {
+    padding: 14px 18px;
+  }
+}
