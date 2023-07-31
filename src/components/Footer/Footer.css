@@ -41,3 +41,36 @@
     padding-right: 30px;
   }
 }
+
+@media screen and (max-width: 475px) {
+  .footer-container {
+    padding: 79px 10px 20px;
+  }
+
+  .footer-container__title {
+    font-size: 12px;
+    padding-bottom: 21px;
+    margin-bottom: 30px;
+  }
+
+  .footer-container__about {
+    flex-direction: column-reverse;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .footer-container__links {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .footer-container__link {
+    font-size: 12px;
+  }
+
+  .footer-container__copyright {
+    font-size: 12px;
+    color: #A0A0A0;
+  }
+}
