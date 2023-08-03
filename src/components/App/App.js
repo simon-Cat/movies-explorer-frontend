@@ -1,12 +1,13 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Header, Main, Footer, NotFoundPage } from '../';
+import { Header, Main, Footer, NotFoundPage, Movies } from '../';
 
 function App() {
   return (
     <div className="App">
       <Header externalClass='app__header-container' />
-      <Main externalClass='app__main-container' />
+      {/* <Main externalClass='app__main-container' /> */}
+      <Movies externalClass='app__movies-container' />
       <Footer externalClass='app__footer-container' />
       {/* <NotFoundPage /> */}
       <Routes>
