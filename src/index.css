@@ -14,10 +14,13 @@
 a {
   text-decoration: none;
   color: #000;
+}
+
+a, button {
   transition: opacity .3s ease;
   cursor: pointer;
 }
 
-a:hover {
+a:hover, button:hover {
   opacity: .8;
 }
