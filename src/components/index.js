@@ -3,7 +3,6 @@ import AboutMe from './AboutMe/AboutMe';
 import AboutProject from './AboutProject/AboutProject';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 import Footer from './Footer/Footer';
-import Header from './Header/Header';
 import Login from './Login/Login';
 import Main from './Main/Main';
 import Movies from './Movies/Movies';
@@ -15,10 +14,12 @@ import Portfolio from './Portfolio/Portfolio';
 import Promo from './Promo/Promo';
 import Register from './Register/Register';
 import SavedMovies from './SavedMovies/SavedMovies';
-import SearchFrom from './SearchForm/SearchForm';
+import SearchForm from './SearchForm/SearchForm';
 import Techs from './Techs/Techs';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import Button from './Button/Button';
+import Gamburger from "./Gamburger/Gamburger";
+import Header from './Header/Header';
 
 export {
   App,
@@ -38,8 +39,9 @@ export {
   Promo,
   Register,
   SavedMovies,
-  SearchFrom,
+  SearchForm,
   Techs,
   NotFoundPage,
   Button,
+  Gamburger,
 };
