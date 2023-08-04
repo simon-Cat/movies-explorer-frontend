@@ -8,8 +8,9 @@ const SearchForm = () => {
         <div className='search-form-container__input-block'>
           <label htmlFor='search-input' className='search-form-container__input-icon' />
           <input id='search-input' type='text' placeholder='Фильм' className='search-form-container__input'/>
+          <button className='search-form-container__button' />
         </div>
-        <button className='search-form-container__button' />
+        {/* <button className='search-form-container__button' /> */}
         <FilterCheckbox externalClass={'search-form-container__checkbox'} />
       </div>
       <hr className='search-form-container__bottom-border' />

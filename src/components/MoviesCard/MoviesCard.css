@@ -59,3 +59,22 @@
     max-width: 295px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .movie-card {
+    max-width:300px;
+  }
+
+  .movie-card__image {
+    height: 168px;
+    margin-bottom: 15px;
+  }
+
+  .movie-card__title {
+    font-size: 12px;
+  }
+
+  .movie-card__duration {
+    font-size: 10px;
+  }
+}

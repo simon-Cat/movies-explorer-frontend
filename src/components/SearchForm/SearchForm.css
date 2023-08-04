@@ -4,7 +4,7 @@
 
 .search-form-container__panel {
   background: #f9f9f9;
-  padding: 19px 25px;
+  padding: 19px 30px 19px 19px;
   border-radius: 9px;
   display: flex;
 }
@@ -13,6 +13,9 @@
   display: flex;
   gap: 16px;
   flex-grow: 1;
+  /* background: #f9f9f9; */
+  background: red;
+
 }
 
 .search-form-container__input-icon {
@@ -25,7 +28,7 @@
 .search-form-container__input {
   outline: none;
   border: none;
-  width: 100%;
+  flex-grow: 1;
   background: #f9f9f9;
 }
 
@@ -63,10 +66,8 @@
   }
 
   .search-form-container__panel {
-    background: #f9f9f9;
-    padding: 19px 25px;
-    border-radius: 9px;
-    display: flex;
+    padding: 19px 20px 19px 25px;
+
   }
 
   .search-form-container__button {
@@ -79,5 +80,38 @@
 
   .search-form-container__bottom-border {
     margin-top: 109px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search-form-container {
+    padding: 80px 10px 10px;
+  }
+
+  .search-form-container__panel {
+    padding: 19px;
+    flex-wrap: wrap;
+    gap: 45px;
+    background: #fff;
+  }
+
+  .search-form-container__input-block {
+    gap: 19px;
+  }
+
+  .search-form-container__input-icon {
+    display: none;
+  }
+
+  .search-form-container__input::placeholder {
+    font-size: 14px;
+  }
+
+  .search-form-container__button {
+    margin: 0;
+  }
+
+  .search-form-container__checkbox {
+    align-self: center;
   }
 }

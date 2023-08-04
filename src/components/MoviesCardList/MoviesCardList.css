@@ -39,3 +39,18 @@
     gap: 30px 30px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .movies-cards-container {
+    padding: 40px 10px 0;
+  }
+
+  .movies-cards-container__list {
+    grid-template-columns: 1fr;
+    padding-bottom: 10px;
+  }
+
+  .movies-cards-container__button {
+    margin: 50px 0 80px;
+  }
+}
