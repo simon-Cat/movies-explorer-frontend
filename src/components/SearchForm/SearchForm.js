@@ -12,6 +12,7 @@ const SearchForm = () => {
         <button className='search-form-container__button' />
         <FilterCheckbox externalClass={'search-form-container__checkbox'} />
       </div>
+      <hr className='search-form-container__bottom-border' />
     </form>
   );
 };
