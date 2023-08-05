@@ -1,46 +1,33 @@
 import './NavTab.css';
+import { Link, NavLink } from 'react-router-dom';
 import { navLinks } from '../../utils/data';
-import { useState } from 'react';
 
-const NavTab = ({ externalClass, isSignin=false }) => {
-  // switch gamburger menu
-  const [ isGamburgerMenuOpen, setIsGamburgerMenuOpen ] = useState(false);
-
-  // gamburger menu switch handler
-  const switchGambugerMenuHandler = () => {
-    setIsGamburgerMenuOpen(!isGamburgerMenuOpen);
-  };
-
+const NavTab = ({ externalClass, isSignin=true }) => {
 
   return (
     <>
       { isSignin ? (
-        <nav className='navigation-container navigation-container_type_authorized'>
-          <div onClick={switchGambugerMenuHandler} className={`navigation-container__gamburger-menu ${isGamburgerMenuOpen ? 'navigation-container__gamburger-menu_state_open' : 'navigation-container__gamburger-menu_state_close'}`}>
-            <div className='navigation-container__gamburger-menu-item'></div>
-            <div className='navigation-container__gamburger-menu-item'></div>
-            <div className='navigation-container__gamburger-menu-item'></div>
-          </div>
-          <ul className='navigation-container__pages-links'>
+        <nav className={`nav-tab-container nav-tab-container_type_authorized ${externalClass}`}>
+          <ul className='nav-tab-container__pages-links'>
             {navLinks.map((item, index) => (
               <li key={index}>
-                <a className='navigation-container__pages-link' href={item.url}>{item.title}</a>
+                <NavLink className={({ isActive }) => `${ isActive ? 'nav-tab-container__pages-link nav-tab-container__pages-link_state_active' : 'nav-tab-container__pages-link' }`} to={item.url}>{item.title}</NavLink>
               </li>
             ))}
           </ul>
-          <a className='navigation-container__profile-link' href='#'>
-            <span className='navigation-container__profile-icon' />
+          <Link className='nav-tab-container__profile-link' to='/'>
+            <span className='nav-tab-container__profile-icon' />
             Аккаунт
-          </a>
+          </Link>
         </nav>
       ) : (
-        <nav className='navigation-container'>
-          <ul className='navigation-container__links'>
+        <nav className='nav-tab-container'>
+          <ul className='nav-tab-container__links'>
             <li>
-              <a className='navigation-container__link' href='#'>Регистрация</a>
+              <Link className='nav-tab-container__link' to='/signup'>Регистрация</Link>
             </li>
             <li>
-              <a className='navigation-container__link navigation-container__link_type_signup' href='#'>Войти</a>
+              <Link className='nav-tab-container__link nav-tab-container__link_type_signup' to='signin'>Войти</Link>
             </li>
           </ul>
         </nav>

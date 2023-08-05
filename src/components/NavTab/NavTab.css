@@ -1,31 +1,35 @@
-.navigation-container {
+.nav-tab-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.navigation-container_type_authorized {
+.nav-tab-container_type_authorized {
   width: 100%;
 }
 
-.navigation-container__pages-links {
+.nav-tab-container__pages-links {
   list-style: none;
   display: flex;
   column-gap: 16px;
   margin-left: 44px;
 }
 
-.navigation-container__pages-link {
+.nav-tab-container__pages-link {
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
 }
 
-.navigation-container__pages-link_selected {
+.nav-tab-container__pages-link_state_active {
   font-weight: 500;
 }
 
-.navigation-container__profile-link {
+.nav-tab-container__pages-link_selected {
+  font-weight: 500;
+}
+
+.nav-tab-container__profile-link {
   font-size: 14px;
   line-height: 16px;
   font-weight: 500;
@@ -35,7 +39,7 @@
   border-radius: 50px;
 }
 
-.navigation-container__profile-icon {
+.nav-tab-container__profile-icon {
   display: inline-block;
   width: 12px;
   height: 14px;
@@ -43,64 +47,38 @@
   margin-right: 7px;
 }
 
-.navigation-container__links {
+.nav-tab-container__links {
   list-style: none;
   display: flex;
   column-gap: 30px;
 }
 
-.navigation-container__link {
+.nav-tab-container__link {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
   background: transparent;
 }
 
-.navigation-container__link_type_signup {
+.nav-tab-container__link_type_signup {
   border-radius: 3px;
   background: #000;
   color: #fff;
   padding: 8px 20px;
 }
 
-.navigation-container__gamburger-menu {
-  display: none;
-  cursor: pointer;
-  transition: opacity .3s ease;
-}
-
-.navigation-container__gamburger-menu:hover {
-  opacity: .8;
-}
-
-.navigation-container__gamburger-menu-item {
-  display: none;
-}
-
 @media screen and (max-width: 768px) {
-  .navigation-container__gamburger-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 44px;
-    height: 44px;
-    padding: 10px 8px;
-  }
-
-  .navigation-container__gamburger-menu-item {
-    display: block;
-    width: 28px;
-    height: 3px;
-    background: #000;
+  .nav-tab-container_type_authorized {
+    display: none;
   }
 }
 
 @media screen and (max-width: 475px) {
-  .navigation-container__link {
+  .nav-tab-container__link {
     font-size: 10px;
   }
 
-  .navigation-container__link_type_signup {
+  .nav-tab-container__link_type_signup {
     padding: 5px 12px;
   }
 }
