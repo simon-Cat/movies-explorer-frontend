@@ -1,10 +1,18 @@
 .header-container {
   max-width: 1280px;
   padding: 29px 70px;
-  background-color: #F3C1F8;
   display: flex;
   justify-content: space-between;
 }
+
+.header-container_bgcolor_white {
+  background-color: #fff;
+}
+
+.header-container_bgcolor_pink {
+  background-color: #F3C1F8;
+}
+
 
 /* link */
 .header-container__logo-link {
@@ -15,9 +23,46 @@
   opacity: .8;
 }
 
+.header__navigation-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+
+  width: 67.70%;
+  transition: right .3s ease;
+
+}
+
+.header__navigation-container_showed {
+  right: 0;
+}
+
+.header__navigation-container_hidden {
+  right: -520px;
+}
+
+.header-container__gamburger-menu {
+  display: none;
+}
+
 @media screen and (max-width: 1100px) {
   .header-container {
     padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-container__gamburger-menu {
+    display: flex;
+  }
+
+  .header-container__navigation {
+    /* display: none; */
+    flex-direction: column;
+    background: #fff;
+    position: fixed;
+    height: 100vh;
+    left: 760px;
   }
 }
 
