@@ -8,6 +8,7 @@
   padding-bottom: 23px;
   border-bottom: 1px #000 solid;
   margin-bottom: 66px;
+  letter-spacing: -0.88px;
 }
 
 .about-me-container__content {
@@ -25,6 +26,7 @@
   line-height: 58px;
   font-weight: 400;
   margin-bottom: 18px;
+  letter-spacing: -2px;
 }
 
 .about-me-container__my-post {

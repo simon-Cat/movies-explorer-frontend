@@ -24,6 +24,7 @@
 .promo-container__subtitle {
   font-size: 13px;
   max-width: 310px;
+  font-weight: 400;
   opacity: .5;
 }
 

@@ -16,8 +16,8 @@ const Navigation = ({ externalClass, closeNavigationHandler }) => {
               to={navigationLink.url}
               className={({ isActive }) =>
                 isActive
-                  ? 'navigation-container__link-item navigation-container__link-item_state_active'
-                  : 'navigation-container__link-item'
+                  ? 'navigation-container__link navigation-container__link_state_active'
+                  : 'navigation-container__link'
               }
             >
               {navigationLink.title}
