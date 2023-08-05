@@ -33,11 +33,27 @@ export const links = [
 export const navLinks = [
   {
     title: 'Фильмы',
-    url: '#',
+    url: '/movies',
   },
   {
     title: 'Сохранённые фильмы',
-    url: '#',
+    url: '/saved-movies',
+  }
+];
+
+// data for navigation
+export const navigationLinks = [
+  {
+    title: 'Главная',
+    url: '/',
+  },
+  {
+    title: 'Фильмы',
+    url: '/movies',
+  },
+  {
+    title: 'Сохранённые фильмы',
+    url: '/saved-movies',
   }
 ];
 
