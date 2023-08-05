@@ -19,6 +19,7 @@ import Techs from './Techs/Techs';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import Button from './Button/Button';
 import Gamburger from "./Gamburger/Gamburger";
+import Popup from "./Popup/Popup";
 import Header from './Header/Header';
 
 export {
@@ -44,4 +45,5 @@ export {
   NotFoundPage,
   Button,
   Gamburger,
+  Popup,
 };
