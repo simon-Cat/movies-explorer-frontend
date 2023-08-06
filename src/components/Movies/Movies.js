@@ -1,11 +1,11 @@
 import './Movies.css';
 import { SearchForm, MoviesCardList } from '../';
 
-const Movies = ({ externalClass }) => {
+const Movies = ({ externalClass, moviesCards }) => {
   return (
     <main className={`movies-container ${externalClass}`}>
       <SearchForm />
-      <MoviesCardList />
+      <MoviesCardList cards={moviesCards} />
     </main>
   );
 };
