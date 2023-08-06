@@ -11,6 +11,7 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Navigation from './Navigation/Navigation';
 import NavTab from './NavTab/NavTab';
 import Portfolio from './Portfolio/Portfolio';
+import Preloader from './Preloader/Preloader';
 import Promo from './Promo/Promo';
 import Register from './Register/Register';
 import SavedMovies from './SavedMovies/SavedMovies';
@@ -46,4 +47,5 @@ export {
   Button,
   Gamburger,
   Popup,
+  Preloader,
 };

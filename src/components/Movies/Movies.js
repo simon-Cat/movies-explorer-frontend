@@ -1,11 +1,15 @@
 import './Movies.css';
-import { SearchForm, MoviesCardList } from '../';
+import { SearchForm, MoviesCardList, Preloader } from '../';
 
-const Movies = ({ externalClass, moviesCards }) => {
+const Movies = ({ externalClass, moviesCards=undefined }) => {
   return (
     <main className={`movies-container ${externalClass}`}>
       <SearchForm />
-      <MoviesCardList cards={moviesCards} />
+      { moviesCards ? (
+        <MoviesCardList cards={moviesCards} />
+      ) : (
+        <Preloader />
+      ) }
     </main>
   );
 };

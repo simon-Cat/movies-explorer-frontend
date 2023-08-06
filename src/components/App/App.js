@@ -18,7 +18,7 @@ function App() {
       <Header externalClass='app__header-container' location={location} switchPopupStateHandler={handleSwitchPopupState} />
         <Routes>
           <Route path='/' element={<Main externalClass='app__main-container' />} />
-          <Route path='/movies' element={<Movies moviesCards={movies} externalClass='app__movies-container' />} />
+          <Route path='/movies' element={<Movies externalClass='app__movies-container' />} />
           <Route path='/saved-movies' element={<SavedMovies savedMoviesCards={savedMovies} externalClass='app__saved-movies-container' />} />
           <Route path='/profile' />
           <Route path='/signin' />
