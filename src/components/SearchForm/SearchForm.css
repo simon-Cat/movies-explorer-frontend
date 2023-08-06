@@ -11,11 +11,9 @@
 
 .search-form-container__input-block {
   display: flex;
-  gap: 16px;
   flex-grow: 1;
-  /* background: #f9f9f9; */
-  background: red;
-
+  background: #f9f9f9;
+  border-right: 1px #e8e8e8 solid;
 }
 
 .search-form-container__input-icon {
@@ -23,6 +21,7 @@
   width: 34px;
   height: 34px;
   background: url("../../images/icons/magnifier-min.svg") no-repeat center;
+  margin-right: 10px;
 }
 
 .search-form-container__input {
@@ -41,7 +40,6 @@
 
 .search-form-container__checkbox {
   padding-left: 29px;
-  border-left: 1px #e8e8e8 solid;
 }
 
 .search-form-container__button {
