@@ -1,12 +1,17 @@
 .movies-cards-container {
   max-width: 1280px;
-  padding: 70px 70px 89px;
+  padding: 0 70px;
 }
 
 .movies-cards-container__list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 38px 20px;
+  padding: 70px 0 10px;
+}
+
+.movies-cards-container__list_page_saved-movies {
+  padding-bottom: 240px;
 }
 
 .movies-cards-container__button {
@@ -14,7 +19,7 @@
   padding: 11px 0 9px;
   background: #F9F9F9;
   text-align: center;
-  margin: 50px 0 0;
+  margin: 50px 0 80px;
   font-size: 12px;
   font-weight: 500;
   width: 100%;
