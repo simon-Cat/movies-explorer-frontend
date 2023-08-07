@@ -1,4 +1,4 @@
-import App from "./App/App";
+import App from './App/App';
 import AboutMe from './AboutMe/AboutMe';
 import AboutProject from './AboutProject/AboutProject';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
@@ -13,14 +13,15 @@ import NavTab from './NavTab/NavTab';
 import Portfolio from './Portfolio/Portfolio';
 import Preloader from './Preloader/Preloader';
 import Promo from './Promo/Promo';
+import Profile from './Profile/Profile';
 import Register from './Register/Register';
 import SavedMovies from './SavedMovies/SavedMovies';
 import SearchForm from './SearchForm/SearchForm';
 import Techs from './Techs/Techs';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import Button from './Button/Button';
-import Gamburger from "./Gamburger/Gamburger";
-import Popup from "./Popup/Popup";
+import Gamburger from './Gamburger/Gamburger';
+import Popup from './Popup/Popup';
 import Header from './Header/Header';
 
 export {
@@ -38,6 +39,7 @@ export {
   Navigation,
   NavTab,
   Portfolio,
+  Profile,
   Promo,
   Register,
   SavedMovies,
