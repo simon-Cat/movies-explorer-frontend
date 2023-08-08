@@ -2,6 +2,7 @@ import App from './App/App';
 import AboutMe from './AboutMe/AboutMe';
 import AboutProject from './AboutProject/AboutProject';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
+import Form from './Form/Form';
 import Footer from './Footer/Footer';
 import Login from './Login/Login';
 import Main from './Main/Main';
@@ -50,4 +51,5 @@ export {
   Gamburger,
   Popup,
   Preloader,
+  Form,
 };
