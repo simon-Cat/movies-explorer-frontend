@@ -1,3 +1,9 @@
-.app__header-container, .app__main-container, .app__footer-container, .app__movies-container, .app__saved-movies-container, .app__profile-container {
+.app__header-container,
+.app__main-container,
+.app__footer-container,
+.app__movies-container,
+.app__saved-movies-container,
+.app__profile-container,
+.app__register-container {
   margin: 0 auto;
 }
