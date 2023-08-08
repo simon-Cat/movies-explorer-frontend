@@ -13,7 +13,7 @@ const Login = ({ externalClass }) => {
         <h1 className='login-container__title'>Рады видеть!</h1>
       </div>
       <Form
-        additionalLink='/signin'
+        additionalLink='/signup'
         className={{ form: 'login-container__form' }}
       >
         <div className='form-container__inputs'>
