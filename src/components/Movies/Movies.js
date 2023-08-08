@@ -3,14 +3,14 @@ import { SearchForm, MoviesCardList, Preloader } from '../';
 
 const Movies = ({ externalClass, moviesCards=undefined }) => {
   return (
-    <main className={`movies-container ${externalClass}`}>
+    <section className={`movies-container`}>
       <SearchForm />
       { moviesCards ? (
         <MoviesCardList cards={moviesCards} />
       ) : (
         <Preloader />
       ) }
-    </main>
+    </section>
   );
 };
 
