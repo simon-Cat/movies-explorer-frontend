@@ -4,6 +4,7 @@
 .app__movies-container,
 .app__saved-movies-container,
 .app__profile-container,
-.app__register-container {
+.app__register-container,
+.app__login-container {
   margin: 0 auto;
 }
