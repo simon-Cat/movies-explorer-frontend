@@ -15,7 +15,7 @@ const NavTab = ({ externalClass, isSignin=true }) => {
               </li>
             ))}
           </ul>
-          <Link className='nav-tab-container__profile-link' to='/'>
+          <Link className='nav-tab-container__profile-link' to='/profile'>
             <span className='nav-tab-container__profile-icon' />
             Аккаунт
           </Link>
