@@ -42,6 +42,10 @@
   display: block;
 }
 
+.form-container__input-error_page_login {
+  margin-bottom: 179px;
+}
+
 .form-container__form-button {
   display: block;
   border: none;
