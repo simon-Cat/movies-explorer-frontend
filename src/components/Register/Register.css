@@ -22,3 +22,9 @@
 .register-container__form {
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  .register-container {
+    padding: 232px 0;
+  }
+}

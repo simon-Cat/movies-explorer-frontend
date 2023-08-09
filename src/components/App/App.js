@@ -17,6 +17,7 @@ import { movies, savedMovies } from '../../utils/data';
 
 function App() {
   const location = useLocation();
+  const [ isSignin, setIsSignin ] = useState(false);
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
   const handleSwitchPopupState = () => {
@@ -33,6 +34,7 @@ function App() {
           externalClass='app__header-container'
           location={location}
           switchPopupStateHandler={handleSwitchPopupState}
+          isSignin={isSignin}
         />
       )}
       <main className='app__main-container'>

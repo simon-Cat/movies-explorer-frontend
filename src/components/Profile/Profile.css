@@ -68,3 +68,17 @@
 .profile-container__form-button:first-of-type {
   margin-bottom: 16px;
 }
+
+@media screen and (max-width: 768px) {
+  .profile-container {
+    padding: 236px 0 269px;
+  }
+
+  .profile-container__title {
+    margin-bottom: 96px;
+  }
+
+  .profile-container__inputs-container {
+    margin-bottom: 210px;
+  }
+}

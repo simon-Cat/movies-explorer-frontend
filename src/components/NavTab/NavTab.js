@@ -2,7 +2,7 @@ import './NavTab.css';
 import { Link, NavLink } from 'react-router-dom';
 import { navLinks } from '../../utils/data';
 
-const NavTab = ({ externalClass, isSignin=true }) => {
+const NavTab = ({ externalClass, isSignin }) => {
 
   return (
     <>

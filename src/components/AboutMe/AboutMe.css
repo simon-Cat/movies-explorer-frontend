@@ -74,26 +74,29 @@
     max-width: 364px;
   }
 
-  .about-me-container__name {
-    font-size: 40px;
-    line-height: 40px;
-  }
+  @media screen and (max-width: 768px) {
+    .about-me-container__name {
+      font-size: 40px;
+      line-height: 40px;
+      letter-spacing: -1.6px;
+    }
 
-  .about-me-container__my-post {
-    font-size: 12px;
-    line-height: 18px;
-    margin-bottom: 18px;
-  }
+    .about-me-container__my-post {
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 18px;
+    }
 
-  .about-me-container__about-me {
-    font-size: 12px;
-    line-height: 18px;
-    margin-bottom: 87px;
-  }
+    .about-me-container__about-me {
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 87px;
+    }
 
-  .about-me-container__image-container {
-    max-width: 255px;
-    height: 307px;
+    .about-me-container__image-container {
+      max-width: 255px;
+      height: 307px;
+    }
   }
 }
 

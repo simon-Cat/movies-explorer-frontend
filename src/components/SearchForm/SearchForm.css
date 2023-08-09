@@ -29,6 +29,9 @@
   border: none;
   flex-grow: 1;
   background: #f9f9f9;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 400;
 }
 
 .search-form-container__input::placeholder {

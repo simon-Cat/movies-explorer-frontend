@@ -7,8 +7,8 @@ const MoviesCardList = ({ cards }) => {
   const location = useLocation();
 
   return (
-    <section className='movies-cards-container'>
-      <section className={`movies-cards-container__list ${ location.pathname === '/saved-movies' ? 'movies-cards-container__list_page_saved-movies' : '' }`}>
+    <section className={`movies-cards-container ${ location.pathname === '/saved-movies' ? 'movies-cards-container_page_saved-movies' : '' }`}>
+      <section className={`movies-cards-container__list`}>
         {cards.map((item, index) => (
           <MoviesCard key={item.id} card={item} />
         ))}

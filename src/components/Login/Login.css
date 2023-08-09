@@ -22,3 +22,9 @@
 .login-container__form {
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    padding: 232px 0;
+  }
+}

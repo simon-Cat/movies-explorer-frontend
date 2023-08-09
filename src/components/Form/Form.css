@@ -38,7 +38,10 @@
 
 .form-container__input-error {
   color: #FF4062;
-  padding-bottom: 69px;
+  height: 12px;
+  margin-bottom: 69px;
+  font-size: 10px;
+  font-weight: 400;
   display: block;
 }
 
