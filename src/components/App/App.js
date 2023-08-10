@@ -17,7 +17,7 @@ import { movies, savedMovies } from '../../utils/data';
 
 function App() {
   const location = useLocation();
-  const [ isSignin, setIsSignin ] = useState(false);
+  const [ isSignin, setIsSignin ] = useState(true);
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
   const handleSwitchPopupState = () => {

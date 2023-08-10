@@ -62,7 +62,7 @@
   }
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 375px) {
   .header-container {
     padding: 14px 18px;
   }

@@ -53,19 +53,21 @@
   }
 }
 
-@media screen and (max-width: 665px) {
-  .portfolio-container__title {
-    font-size: 14px;
-    margin-bottom: 40px;
-  }
-
+@media screen and (max-width: 475px) {
   .portfolio-container__item-title {
     font-size: 18px;
     line-height: 28px;
+    letter-spacing: -0.72px;
   }
 
   .portfolio-container__item-icon {
     max-width: 18px;
     height: 28px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .portfolio-container__title {
+    font-size: 14px;
+    margin-bottom: 40px;
   }
 }

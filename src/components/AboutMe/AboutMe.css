@@ -73,42 +73,36 @@
   .about-me-container__student-info {
     max-width: 364px;
   }
+}
 
-  @media screen and (max-width: 768px) {
-    .about-me-container__name {
-      font-size: 40px;
-      line-height: 40px;
-      letter-spacing: -1.6px;
-    }
+@media screen and (max-width: 768px) {
+  .about-me-container__name {
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
 
-    .about-me-container__my-post {
-      font-size: 12px;
-      line-height: 18px;
-      margin-bottom: 18px;
-    }
+  .about-me-container__my-post {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 18px;
+  }
 
-    .about-me-container__about-me {
-      font-size: 12px;
-      line-height: 18px;
-      margin-bottom: 87px;
-    }
+  .about-me-container__about-me {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 87px;
+  }
 
-    .about-me-container__image-container {
-      max-width: 255px;
-      height: 307px;
-    }
+  .about-me-container__image-container {
+    max-width: 255px;
+    height: 307px;
   }
 }
 
-@media screen and (max-width: 665px) {
-  .about-me-container {
-    padding: 70px 14px;
-  }
-
-  .about-me-container__title {
-    font-size: 18px;
-    padding-bottom: 28px;
-    margin-bottom: 60px;
+@media screen and (max-width: 740px) {
+  .about-me-container__student-info {
+    max-width: 375px;
   }
 
   .about-me-container__content {
@@ -116,10 +110,33 @@
     gap: 40px;
     margin-bottom: 70px;
   }
+}
+
+@media screen and (max-width: 475px) {
+  .about-me-container {
+    padding: 70px 14px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .about-me-container__title {
+    font-size: 18px;
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+    letter-spacing: -0.72px;
+  }
+
+  .about-me-container__content {
+    align-items: center;
+  }
+
+  .about-me-container__student-info {
+    max-width: 292px;
+  }
 
   .about-me-container__name {
     font-size: 30px;
     margin-bottom: 20px;
+    letter-spacing: -1.2px;
   }
 
   .about-me-container__my-post {

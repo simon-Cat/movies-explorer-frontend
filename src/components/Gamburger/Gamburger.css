@@ -20,7 +20,7 @@
   background: #000;
 }
 
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 375px) {
   .gamburger-menu-container {
     width: 40px;
     height: 43px;

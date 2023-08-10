@@ -73,7 +73,11 @@
   }
 }
 
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 375px) {
+  .nav-tab-container__links {
+    column-gap: 14px;
+  }
+
   .nav-tab-container__link {
     font-size: 10px;
   }
