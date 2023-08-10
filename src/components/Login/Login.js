@@ -16,8 +16,8 @@ const Login = ({ externalClass }) => {
         additionalLink='/signup'
         className={{ form: 'login-container__form' }}
       >
-        <div className='form-container__inputs'>
-          <div className='form-container__input-container'>
+        <ul className='form-container__inputs'>
+          <li className='form-container__input-container'>
             <label htmlFor='user-email' className='form-container__label'>
               E-mail
             </label>
@@ -27,8 +27,8 @@ const Login = ({ externalClass }) => {
               className='form-container__input'
               placeholder='Введите почту'
             />
-          </div>
-          <div className='form-container__input-container'>
+          </li>
+          <li className='form-container__input-container'>
             <label htmlFor='user-password' className='form-container__label'>
               Пароль
             </label>
@@ -38,9 +38,9 @@ const Login = ({ externalClass }) => {
               className='form-container__input'
               placeholder='Введите пароль'
             />
-          </div>
-        </div>
-        <span className='form-container__input-error form-container__input-error_page_login' />
+          </li>
+          <span className='form-container__input-error form-container__input-error_page_login' />
+        </ul>
       </Form>
     </section>
   );

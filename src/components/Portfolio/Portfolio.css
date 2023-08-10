@@ -53,7 +53,7 @@
   }
 }
 
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 630px) {
   .portfolio-container__item-title {
     font-size: 18px;
     line-height: 28px;

@@ -61,7 +61,7 @@
 }
 
 .profile-container__form-button_type_exit {
-  color: #FF4062;
+  color: #ff4062;
   font-weight: 500;
 }
 
@@ -80,5 +80,29 @@
 
   .profile-container__inputs-container {
     margin-bottom: 210px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .profile-container {
+    padding: 70px 40px 30px;
+  }
+
+  .profile-container__title {
+    margin-bottom: 80px;
+  }
+
+  .profile-container__form {
+    min-height: 472px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-container__inputs-container {
+    flex-grow: 1;
+  }
+
+  .profile-container__form-button {
+    font-size: 12px;
   }
 }

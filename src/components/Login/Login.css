@@ -28,3 +28,20 @@
     padding: 232px 0;
   }
 }
+
+@media screen and (max-width: 475px) {
+  .login-container {
+    padding: 56px 30px 30px;
+  }
+
+  .login-container__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 80px;
+  }
+
+  .login-container__logo {
+    margin-bottom: 50px;
+  }
+}

@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 10px;
+  list-style: none;
 }
 
 .form-container__input-container {
@@ -19,25 +19,25 @@
 .form-container__label {
   font-size: 10px;
   font-weight: 400;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 .form-container__input {
   padding: 15px;
-  background: #F9F9F9;
+  background: #f9f9f9;
   border-radius: 8px;
   border: none;
   outline: none;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .form-container__input_state_error {
-  color: #FF4062;
+  color: #ff4062;
 }
 
 .form-container__input-error {
-  color: #FF4062;
+  color: #ff4062;
   height: 12px;
   margin-bottom: 69px;
   font-size: 10px;
@@ -70,7 +70,7 @@
 .form-container__addition-text {
   font-size: 14px;
   font-weight: 400;
-  color: #A0A0A0;
+  color: #a0a0a0;
   text-align: center;
   margin-right: 6px;
 }
@@ -79,4 +79,30 @@
   font-size: 14px;
   font-weight: 400;
   color: #000;
+}
+
+@media screen and (max-width: 475px) {
+  .form-container {
+    min-height: 482px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-container__inputs {
+    flex-grow: 1;
+  }
+
+  .form-container__form-button {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .form-container__addition-text {
+    font-size: 12px;
+    margin-right: 7px;
+  }
+
+  .form-container__addition-link {
+    font-size: 12px;
+  }
 }
