@@ -7,6 +7,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 38px 20px;
   padding: 70px 0 10px;
+  list-style: none;
 }
 
 .movies-cards-container_page_saved-movies {

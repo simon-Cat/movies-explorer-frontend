@@ -20,6 +20,7 @@
 
 .profile-container__inputs-container {
   margin-bottom: 220px;
+  list-style: none;
 }
 
 .profile-container__input-container {

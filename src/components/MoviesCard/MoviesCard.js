@@ -6,7 +6,7 @@ const MoviesCard = ({ card }) => {
   const location = useLocation();
 
   return (
-    <article className='movie-card'>
+    <li className='movie-card'>
       <img className='movie-card__image' alt={`Кадр из фильма "${card.title}"`} src={card.url} />
       <div className='movie-card__description'>
         <h2 className='movie-card__title'>{ card.title }</h2>
@@ -17,7 +17,7 @@ const MoviesCard = ({ card }) => {
         )}
       </div>
       <p className='movie-card__duration'>{ card.duration }</p>
-    </article>
+    </li>
   );
 };
 

@@ -11,8 +11,8 @@ const Register = ({ externalClass }) => {
         <h1 className='register-container__title'>Добро пожаловать!</h1>
       </div>
       <Form type='register' additionalLink='/signin' className={{ form: 'register-container__form' }}>
-        <div className='form-container__inputs'>
-          <div className='form-container__input-container'>
+        <ul className='form-container__inputs'>
+          <li className='form-container__input-container'>
             <label htmlFor='user-name' className='form-container__label'>
               Имя
             </label>
@@ -22,8 +22,8 @@ const Register = ({ externalClass }) => {
               className='form-container__input'
               placeholder='Введите имя'
             />
-          </div>
-          <div className='form-container__input-container'>
+          </li>
+          <li className='form-container__input-container'>
             <label htmlFor='user-email' className='form-container__label'>
               E-mail
             </label>
@@ -33,8 +33,8 @@ const Register = ({ externalClass }) => {
               className='form-container__input'
               placeholder='Введите почту'
             />
-          </div>
-          <div className='form-container__input-container'>
+          </li>
+          <li className='form-container__input-container'>
             <label
               htmlFor='user-password'
               className='form-container__label'
@@ -47,8 +47,8 @@ const Register = ({ externalClass }) => {
               className='form-container__input'
               placeholder='Введите пароль'
             />
-          </div>
-        </div>
+          </li>
+        </ul>
         <span className='form-container__input-error' />
       </Form>
     </section>
