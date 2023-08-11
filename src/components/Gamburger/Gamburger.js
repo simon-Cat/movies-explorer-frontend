@@ -2,11 +2,11 @@ import './Gamburger.css';
 
 const Gamburger = ({ externalClass, changeGamburgerStateHandler }) => {
   return (
-    <div onClick={changeGamburgerStateHandler} className={`gamburger-menu-container ${externalClass}`}>
-      <div className='gamburger-menu-container__item'></div>
-      <div className='gamburger-menu-container__item'></div>
-      <div className='gamburger-menu-container__item'></div>
-    </div>
+    <ul onClick={changeGamburgerStateHandler} className={`gamburger-menu-container ${externalClass}`}>
+      <li className='gamburger-menu-container__item'></li>
+      <li className='gamburger-menu-container__item'></li>
+      <li className='gamburger-menu-container__item'></li>
+    </ul>
   );
 };
 
