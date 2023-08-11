@@ -21,7 +21,6 @@ import SavedMovies from './SavedMovies/SavedMovies';
 import SearchForm from './SearchForm/SearchForm';
 import Techs from './Techs/Techs';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
-import Button from './Button/Button';
 import Gamburger from './Gamburger/Gamburger';
 import Popup from './Popup/Popup';
 import Header from './Header/Header';
@@ -48,7 +47,6 @@ export {
   SearchForm,
   Techs,
   NotFoundPage,
-  Button,
   Gamburger,
   Popup,
   Preloader,
