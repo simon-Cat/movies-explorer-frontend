@@ -11,6 +11,7 @@ import MoviesCard from './MoviesCard/MoviesCard';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Navigation from './Navigation/Navigation';
 import NavTab from './NavTab/NavTab';
+import NoResults from './NoResults/NoResults';
 import Portfolio from './Portfolio/Portfolio';
 import Preloader from './Preloader/Preloader';
 import Promo from './Promo/Promo';
@@ -52,4 +53,5 @@ export {
   Popup,
   Preloader,
   Form,
+  NoResults,
 };
