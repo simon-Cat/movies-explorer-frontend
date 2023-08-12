@@ -1,0 +1,26 @@
+.no-results-container {
+  padding: 40px 70px 10px;
+}
+
+.no-results-container__title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .no-results-container {
+    padding: 40px 30px 10px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .no-results-container {
+    padding: 40px 10px 10px;
+  }
+
+  .no-results-container__title {
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
