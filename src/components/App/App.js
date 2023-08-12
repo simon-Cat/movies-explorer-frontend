@@ -11,13 +11,14 @@ import {
   Profile,
   Register,
   Login,
+  ProtectedRoute,
 } from '../';
 import { useState } from 'react';
 import { movies, savedMovies } from '../../utils/data';
 
 function App() {
   const location = useLocation();
-  const [ isSignin, setIsSignin ] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
   const handleSwitchPopupState = () => {
@@ -34,7 +35,7 @@ function App() {
           externalClass='app__header-container'
           location={location}
           switchPopupStateHandler={handleSwitchPopupState}
-          isSignin={isSignin}
+          isLoggedIn={isLoggedIn}
         />
       )}
       <main className='app__main-container'>
@@ -47,8 +48,9 @@ function App() {
           <Route
             path='/movies'
             element={
-              <Movies
-                externalClass='app__movies-container'
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                element={Movies}
                 moviesCards={movies}
               />
             }
@@ -56,15 +58,18 @@ function App() {
           <Route
             path='/saved-movies'
             element={
-              <SavedMovies
-                savedMoviesCards={savedMovies}
-                externalClass='app__saved-movies-container'
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                element={SavedMovies}
+                moviesCards={savedMovies}
               />
             }
           />
           <Route
             path='/profile'
-            element={<Profile extrenalClass='app__profile-container' />}
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn} element={Profile} />
+            }
           />
           <Route
             path='/signin'

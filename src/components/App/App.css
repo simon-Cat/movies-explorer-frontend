@@ -10,17 +10,6 @@
   flex-grow: 1;
 }
 
-/* .app__header-container,
-.app__main-container,
-.app__footer-container,
-.app__movies-container,
-.app__saved-movies-container,
-.app__profile-container,
-.app__register-container,
-.app__login-container {
-  margin: 0 auto;
-} */
-
 .app__header-container,
 .app__main-container,
 .app__footer-container {
