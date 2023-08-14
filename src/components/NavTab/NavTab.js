@@ -2,11 +2,11 @@ import './NavTab.css';
 import { Link, NavLink } from 'react-router-dom';
 import { navLinks } from '../../utils/data';
 
-const NavTab = ({ externalClass, isSignin }) => {
+const NavTab = ({ externalClass, isLoggedIn }) => {
 
   return (
     <>
-      { isSignin ? (
+      { isLoggedIn ? (
         <nav className={`nav-tab-container nav-tab-container_type_authorized ${externalClass}`}>
           <ul className='nav-tab-container__pages-links'>
             {navLinks.map((item, index) => (
