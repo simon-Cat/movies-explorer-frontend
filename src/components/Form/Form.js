@@ -1,29 +1,40 @@
-import './Form.css';
-import { Link } from 'react-router-dom';
+import "./Form.css";
+import { Link } from "react-router-dom";
 
-const Form = ({ children, type, submitHandler = null, additionalLink, className }) => {
+const Form = ({ children, type, handleSubmit, additionalLink, isFormValid, className }) => {
+  // sumbitHandler
+  const submitHandler = (e) => {
+    e.preventDefault();
+    handleSubmit();
+  };
+
   return (
-    <form className={`form-container ${className.form}`}>
+    <form
+      onSubmit={(e) => {
+        submitHandler(e);
+      }}
+      className={`form-container ${className.form}`}
+    >
       {children}
-      <button className='form-container__form-button'>
-        { type === 'register' ? 'Зарегистрироваться' : 'Войти' }
+      <button type="sumbit" disabled={!isFormValid} className={`form-container__form-button ${!isFormValid ? 'form-container__form-button_disabled' : ''}`}>
+        {type === "register" ? "Зарегистрироваться" : "Войти"}
       </button>
-      <div className='form-container__addition'>
-        {type === 'register' ? (
+      <div className="form-container__addition">
+        {type === "register" ? (
           <>
-            <span className='form-container__addition-text'>
+            <span className="form-container__addition-text">
               Уже зарегистрированы?
             </span>
-            <Link to={additionalLink} className='form-container__addition-link'>
+            <Link to={additionalLink} className="form-container__addition-link">
               Войти
             </Link>
           </>
         ) : (
           <>
-            <span className='form-container__addition-text'>
+            <span className="form-container__addition-text">
               Ещё не зарегистрированы?
             </span>
-            <Link to={additionalLink} className='form-container__addition-link'>
+            <Link to={additionalLink} className="form-container__addition-link">
               Регистрация
             </Link>
           </>
