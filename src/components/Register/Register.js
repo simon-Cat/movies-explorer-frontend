@@ -2,10 +2,10 @@ import './Register.css';
 import logo from '../../images/icons/logo-min.svg';
 import { Form } from '../';
 import { Link } from 'react-router-dom';
-import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
 import { useNavigate } from 'react-router-dom';
+import * as auth from '../../utils/auth';
 
 const Register = ({ externalClass }) => {
   // navigate
@@ -18,17 +18,19 @@ const Register = ({ externalClass }) => {
 
   // sumbitHandler
   const submitHandler = () => {
-    mainApi
-      .register(values)
+    auth.register(values)
       .then((res) => {
         if (res.err) {
           return Promise.reject(res);
         }
         navigate('/signin', { replace: true });
       })
-      .catch((e) => {
-        setResponseError(e);
-      });
+      .catch((err) => {
+        setResponseError(err.message);
+      })
+      .finally(() => {
+        resetForm();
+      })
   };
 
   return (
