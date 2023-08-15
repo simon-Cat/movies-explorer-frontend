@@ -25,6 +25,11 @@ function App() {
     setIsPopupOpened(!isPopupOpened);
   };
 
+  const onLogin = (token) => {
+    localStorage.setItem('token', token);
+    setIsLoggedIn(true);
+  }
+
   return (
     <div className='App'>
       {(location.pathname === '/' ||
@@ -73,7 +78,7 @@ function App() {
           />
           <Route
             path='/signin'
-            element={<Login externalClass='app__login-container' />}
+            element={<Login externalClass='app__login-container' onLogin={onLogin} />}
           />
           <Route
             path='/signup'
