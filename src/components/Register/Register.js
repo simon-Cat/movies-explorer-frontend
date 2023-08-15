@@ -6,7 +6,6 @@ import * as mainApi from '../../utils/MainApi';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
 import { useNavigate } from 'react-router-dom';
-import { userNameRegExp } from '../../utils/regExp'
 
 const Register = ({ externalClass }) => {
   // navigate
@@ -28,7 +27,7 @@ const Register = ({ externalClass }) => {
         navigate('/signin', { replace: true });
       })
       .catch((e) => {
-        setResponseError(e.message);
+        setResponseError(e);
       });
   };
 
@@ -65,7 +64,7 @@ const Register = ({ externalClass }) => {
                 handleChange(e);
               }}
             />
-            <span className='form-container__input-error'>{errors.name}</span>
+            <span className='form-container__input-error'>{errors.name || ''}</span>
           </li>
           <li className='form-container__input-container'>
             <label htmlFor='user-email' className='form-container__label'>
@@ -82,7 +81,7 @@ const Register = ({ externalClass }) => {
                 handleChange(e);
               }}
             />
-            <span className='form-container__input-error'>{errors.email}</span>
+            <span className='form-container__input-error'>{errors.email || ''}</span>
           </li>
           <li className='form-container__input-container'>
             <label htmlFor='user-password' className='form-container__label'>
@@ -92,6 +91,7 @@ const Register = ({ externalClass }) => {
               id='user-password'
               name='password'
               type='password'
+              minLength='8'
               className='form-container__input'
               placeholder='Введите пароль'
               required
@@ -100,11 +100,11 @@ const Register = ({ externalClass }) => {
               }}
             />
             <span className='form-container__input-error'>
-              {errors.password}
+              {errors.password || ''}
             </span>
           </li>
         </ul>
-        <span className='form-container__form-error'>{responseError}</span>
+        <span className='form-container__form-error'>{responseError || ''}</span>
       </Form>
     </section>
   );
