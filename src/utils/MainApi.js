@@ -1,17 +1,33 @@
-import { MAIN_API_URL } from '../utils/baseUrls';
+import { MAIN_API_URL } from "./baseUrls";
 
-// rigister
-export const register = ({ name, email, password }) => {
-  return fetch(`${MAIN_API_URL}/signup`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ name, email, password }),
-  })
-    .then((res) => {
-      return res.json();
-    })
-};
+// API Class
+class MainApi {
+  constructor({ baseURL }) {
+    this.url = baseURL;
+  }
 
+  // проверить статус запроса
+  _checkResponseStatus(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      return Promise.reject('Ошибка запроса!');
+    }
+  }
 
+  // получить данные пользователя
+  getUserInfo(headers) {
+    return fetch(`${this.url}/users/me`, {
+      method: 'GET',
+      headers: headers,
+    }).then((res) => {
+      return this._checkResponseStatus(res);
+    });
+  }
+}
+
+const mainApi = new MainApi({
+  baseURL: MAIN_API_URL
+});
+
+export default mainApi;
