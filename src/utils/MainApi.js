@@ -1,4 +1,4 @@
-import { MAIN_API_URL } from "./baseUrls";
+import { MAIN_API_URL } from './baseUrls';
 
 // API Class
 class MainApi {
@@ -24,10 +24,21 @@ class MainApi {
       return this._checkResponseStatus(res);
     });
   }
+
+  // обновить данные порфиля
+  updateProfileInfo({ name, email }, headers) {
+    return fetch(`${this.url}/users/me`, {
+      method: 'PATCH',
+      headers: headers,
+      body: JSON.stringify({ name, email }),
+    }).then((res) => {
+      return this._checkResponseStatus(res);
+    });
+  }
 }
 
 const mainApi = new MainApi({
-  baseURL: MAIN_API_URL
+  baseURL: MAIN_API_URL,
 });
 
 export default mainApi;
