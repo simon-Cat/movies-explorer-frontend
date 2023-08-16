@@ -21,29 +21,31 @@ import mainApi from '../../utils/MainApi';
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [curentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem('token')) {
       setIsLoggedIn(true);
     }
   }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
-      Promise.all([mainApi.getUserInfo({
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      })])
-      .then(([{ name, email }]) => {
-        setCurrentUser({...curentUser, name, email});
-        navigate('/movies');
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+      Promise.all([
+        mainApi.getUserInfo({
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }),
+      ])
+        .then(([{ name, email }]) => {
+          setCurrentUser({ ...currentUser, name, email });
+          navigate('/movies');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else return;
   }, [isLoggedIn]);
 
@@ -61,11 +63,17 @@ function App() {
   const onSignOut = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-  }
+    navigate('/');
+  };
+
+  // updateProfile
+  const onUpdateProfile = (updatedUserData) => {
+    setCurrentUser({ ...currentUser, ...updatedUserData });
+  };
 
   return (
     <div className='App'>
-      <CurrentUserContext.Provider value={curentUser}>
+      <CurrentUserContext.Provider value={currentUser}>
         {(location.pathname === '/' ||
           location.pathname === '/movies' ||
           location.pathname === '/saved-movies' ||
@@ -107,7 +115,12 @@ function App() {
             <Route
               path='/profile'
               element={
-                <ProtectedRoute isLoggedIn={isLoggedIn} element={Profile} onSignOut={onSignOut} />
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  element={Profile}
+                  onSignOut={onSignOut}
+                  onUpdateProfile={onUpdateProfile}
+                />
               }
             />
             <Route
