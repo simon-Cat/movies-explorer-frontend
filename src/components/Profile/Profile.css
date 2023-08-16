@@ -51,6 +51,32 @@
   font-weight: 400;
 }
 
+.form-container__form-error {
+  color: #ff4062;
+  height: 12px;
+  margin-bottom: 69px;
+  font-size: 10px;
+  font-weight: 400;
+  display: block;
+}
+
+.profile-container__form-success {
+  color: #82e479;
+  height: 12px;
+  margin-bottom: 69px;
+  font-size: 10px;
+  font-weight: 400;
+  display: block;
+}
+
+.profile-container__input-error {
+  color: #ff4062;
+  height: 12px;
+  font-size: 10px;
+  font-weight: 400;
+  display: block;
+}
+
 .profile-container__form-button {
   display: block;
   border: none;
@@ -59,6 +85,17 @@
   text-align: center;
   background: transparent;
   margin: 0 auto;
+}
+
+.profile-container__form-button_disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+  transition: none;
+  cursor: default;
+}
+
+.profile-container__form-button_disabled:hover {
+  opacity: 1;
 }
 
 .profile-container__form-button_type_exit {
