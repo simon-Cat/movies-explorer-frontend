@@ -1,9 +1,15 @@
 import "./SearchForm.css";
 import { FilterCheckbox } from "../";
 
-const SearchForm = () => {
+const SearchForm = ({ onSearchMovies }) => {
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    onSearchMovies();
+  }
+
   return (
-    <form className="search-form-container">
+    <form className="search-form-container" onSubmit={(e) => {submitHandler(e)}}>
       <div className="search-form-container__search-panel">
         <div className="search-form-container__input-panel">
           <label
@@ -15,6 +21,7 @@ const SearchForm = () => {
             type="text"
             placeholder="Фильм"
             className="search-form-container__input"
+            required
           />
           <button className="search-form-container__button" />
         </div>
