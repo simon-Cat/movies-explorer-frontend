@@ -2,18 +2,14 @@ import './Movies.css';
 import { SearchForm, MoviesCardList, Preloader } from '../';
 import { useState } from 'react';
 
-const Movies = ({ externalClass, moviesCards=undefined }) => {
+const Movies = ({ externalClass, moviesCards = undefined, onSearchMovies }) => {
   // on/off preloader
-  const [ showPreloader, setShowPreloader ] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(true);
 
   return (
     <section className={`movies-container`}>
-      <SearchForm />
-      { moviesCards && showPreloader ? (
-        <MoviesCardList cards={moviesCards} />
-      ) : (
-        <Preloader />
-      ) }
+      <SearchForm onSearchMovies={onSearchMovies} />
+      {moviesCards && <MoviesCardList cards={moviesCards} />}
     </section>
   );
 };
