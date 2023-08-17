@@ -2,7 +2,7 @@ import './SearchForm.css';
 import { FilterCheckbox } from '../';
 import { useState } from 'react';
 
-const SearchForm = ({ onSearchMovies }) => {
+const SearchForm = ({ onSubmit }) => {
   // if value is not passed, show message
   const [showMessage, setShowMessage] = useState(false);
   // input's value
@@ -16,7 +16,7 @@ const SearchForm = ({ onSearchMovies }) => {
       return;
     } else {
       setShowMessage(false);
-      onSearchMovies();
+      onSubmit(searchInputValue);
     }
   };
 
