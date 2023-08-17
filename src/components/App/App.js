@@ -26,6 +26,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPopupOpened, setIsPopupOpened] = useState(false);
   const [ movies, setMovies ] = useState('');
+  const [ isShowPreloader, setIsShowPreloader ] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -73,11 +74,18 @@ function App() {
     setCurrentUser({ ...currentUser, ...updatedUserData });
   };
 
+  // on/off preloader
+  const onLoading = () => {
+    setIsShowPreloader(!isShowPreloader);
+  };
+
   // search movies
   const onSearchMovies = () => {
+    onLoading();
     getMovies()
       .then((res) => {
         setMovies(res);
+        onLoading();
       })
       .catch((err) => {
         console.log(err);
@@ -113,6 +121,7 @@ function App() {
                   element={Movies}
                   moviesCards={movies}
                   onSearchMovies={onSearchMovies}
+                  isShowPreloader={isShowPreloader}
                 />
               }
             />
