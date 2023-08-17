@@ -14,9 +14,10 @@ import {
   ProtectedRoute,
 } from '../';
 import { useState, useEffect } from 'react';
-import { movies, savedMovies } from '../../utils/data';
+import { savedMovies } from '../../utils/data';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
+import { getMovies } from '../../utils/MoviesApi';
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isPopupOpened, setIsPopupOpened] = useState(false);
+  const [ movies, setMovies ] = useState('');
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -71,6 +73,17 @@ function App() {
     setCurrentUser({ ...currentUser, ...updatedUserData });
   };
 
+  // search movies
+  const onSearchMovies = () => {
+    getMovies()
+      .then((res) => {
+        setMovies(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  };
+
   return (
     <div className='App'>
       <CurrentUserContext.Provider value={currentUser}>
@@ -99,6 +112,7 @@ function App() {
                   isLoggedIn={isLoggedIn}
                   element={Movies}
                   moviesCards={movies}
+                  onSearchMovies={onSearchMovies}
                 />
               }
             />
