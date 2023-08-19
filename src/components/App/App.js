@@ -19,13 +19,22 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
 
 function App() {
+  // location
   const location = useLocation();
+  // navigate
   const navigate = useNavigate();
+  // currentUser for Context
   const [currentUser, setCurrentUser] = useState({});
+  // user logined or not
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // show/hide popup
   const [isPopupOpened, setIsPopupOpened] = useState(false);
+  // movies array
   const [ movies, setMovies ] = useState([]);
+  // value of user's input
   const [searchInputValue, setSearchInputValue] = useState('');
+  // state of filter checkbox
+  const [ checkboxState, setCheckboxState ] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -51,6 +60,7 @@ function App() {
     } else return;
   }, [isLoggedIn]);
 
+  // switch popup state
   const handleSwitchPopupState = () => {
     setIsPopupOpened(!isPopupOpened);
   };
@@ -68,7 +78,7 @@ function App() {
     navigate('/');
   };
 
-  // updateProfile
+  // update profile handler
   const onUpdateProfile = (updatedUserData) => {
     setCurrentUser({ ...currentUser, ...updatedUserData });
   };
@@ -78,6 +88,11 @@ function App() {
     setMovies((movies) => res);
     setSearchInputValue(searchValue);
   }
+
+  // change checkbox state
+  const onChangeCheckbox = (state) => {
+    setCheckboxState(state);
+  };
 
   return (
     <div className='App'>
@@ -109,6 +124,8 @@ function App() {
                   moviesCards={movies}
                   onSearchMovies={onSearchMovies}
                   searchInputValue={searchInputValue}
+                  onChangeCheckbox= {onChangeCheckbox}
+                  checkboxState={checkboxState}
                 />
               }
             />
