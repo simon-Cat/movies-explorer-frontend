@@ -2,7 +2,7 @@ import './SearchForm.css';
 import { FilterCheckbox } from '../';
 import { useState } from 'react';
 
-const SearchForm = ({ onSubmit }) => {
+const SearchForm = ({ onSubmit, onChangeCheckbox, checkboxState }) => {
   // if value is not passed, show message
   const [showMessage, setShowMessage] = useState(false);
   // input's value
@@ -54,7 +54,7 @@ const SearchForm = ({ onSubmit }) => {
 
           <button className='search-form-container__button' />
         </div>
-        <FilterCheckbox externalClass={'search-form-container__checkbox'} />
+        <FilterCheckbox checkboxState={checkboxState} onChangeCheckbox={onChangeCheckbox} externalClass={'search-form-container__checkbox'} />
       </div>
       <hr className='search-form-container__bottom-border' />
     </form>

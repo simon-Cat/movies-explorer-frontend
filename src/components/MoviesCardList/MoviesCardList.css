@@ -27,6 +27,10 @@
   border-radius: 6px;
 }
 
+.movies-cards-container__button_hidden {
+  display: none;
+}
+
 @media screen and (max-width: 985px) {
   .movies-cards-container__list {
     grid-template-columns: repeat(3, 1fr);

@@ -1,9 +1,21 @@
 import './MoviesCardList.css';
 import { MoviesCard } from '../';
 import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-const MoviesCardList = ({ cards }) => {
+const MoviesCardList = ({ onClick, showedMoviesLength, filtredMoviesLength, cards }) => {
   const location = useLocation();
+
+  useEffect(() => {
+    if (showedMoviesLength >= filtredMoviesLength) {
+      setIsButtonShowed(false);
+    } else {
+      setIsButtonShowed(true);
+    }
+  }, [ showedMoviesLength, filtredMoviesLength ]);
+
+  // show/hide button
+  const [ isButtonShowed, setIsButtonShowed ] = useState(true);
 
   return (
     <section
@@ -19,7 +31,7 @@ const MoviesCardList = ({ cards }) => {
         ))}
       </ul>
       {location.pathname === '/movies' && (
-        <button className='movies-cards-container__button'>Ещё</button>
+        <button onClick={() => {onClick()}} className={`movies-cards-container__button ${!isButtonShowed && 'movies-cards-container__button_hidden'}`}>Ещё</button>
       )}
     </section>
   );
