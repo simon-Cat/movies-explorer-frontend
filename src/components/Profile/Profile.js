@@ -20,7 +20,11 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   const [successUpdateMessage, setSuccessUpdateMessage] = useState('');
 
   useEffect(() => {
-    setValues({ ...values, name: currentUser.name || '', email: currentUser.email || '' })
+    setValues({
+      ...values,
+      name: currentUser.name || '',
+      email: currentUser.email || '',
+    });
   }, [currentUser]);
 
   const singOutHandler = () => {
@@ -48,7 +52,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
       })
       .finally(() => {
         resetForm();
-      })
+      });
   };
 
   return (

@@ -1,5 +1,13 @@
 // data for Techs
-export const technologies = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
+export const technologies = [
+  'HTML',
+  'CSS',
+  'JS',
+  'React',
+  'Git',
+  'Express.js',
+  'mongoDB',
+];
 
 // data for Portfolio
 export const portfolio = [
@@ -25,8 +33,8 @@ export const links = [
   },
   {
     title: 'Github',
-    url: 'https://github.com/simon-Cat'
-  }
+    url: 'https://github.com/simon-Cat',
+  },
 ];
 
 // data for NavTab
@@ -38,7 +46,7 @@ export const navLinks = [
   {
     title: 'Сохранённые фильмы',
     url: '/saved-movies',
-  }
+  },
 ];
 
 // data for navigation
@@ -54,7 +62,7 @@ export const navigationLinks = [
   {
     title: 'Сохранённые фильмы',
     url: '/saved-movies',
-  }
+  },
 ];
 
 // test data for movies
@@ -226,7 +234,7 @@ export const movies = [
     duration: '1ч42м',
     like: false,
     url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  }
+  },
 ];
 
 // test data for saved movies
@@ -251,5 +259,5 @@ export const savedMovies = [
     duration: '1ч42м',
     like: false,
     url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  }
+  },
 ];
