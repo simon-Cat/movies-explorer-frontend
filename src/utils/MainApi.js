@@ -35,6 +35,37 @@ class MainApi {
       return this._checkResponseStatus(res);
     });
   }
+
+  // get savde movies
+  getSavedMovies(headers) {
+    return fetch(`${MAIN_API_URL}/movies`, {
+      method: 'GET',
+      headers: headers,
+    }).then((res) => {
+      return this._checkResponseStatus(res);
+    })
+  }
+
+  // add movies into favorites
+  addFavoriteMovie(favoriteMovie, headers) {
+    return fetch(`${this.url}/movies`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(favoriteMovie),
+    }).then((res) => {
+      return this._checkResponseStatus(res);
+    });
+  }
+
+  // remove movies from favorites
+  removeFavoriteMovie(favoriteMovieID, headers) {
+    return fetch(`${this.url}/movies/${favoriteMovieID}`, {
+      method: 'DELETE',
+      headers: headers,
+    }).then((res) => {
+      return this._checkResponseStatus(res);
+    });
+  }
 }
 
 const mainApi = new MainApi({

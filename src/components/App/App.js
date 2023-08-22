@@ -14,11 +14,11 @@ import {
   ProtectedRoute,
 } from '../';
 import { useState, useEffect } from 'react';
-import { savedMovies } from '../../utils/data';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
 import { getMovies } from '../../utils/MoviesApi';
 import { filterOutMovies, checkWindowWidth } from '../../utils/utilsFuncs';
+import { MOVIES_IMAGE_API_URL } from '../../utils/baseUrls';
 
 function App() {
   // resize handler
@@ -63,7 +63,7 @@ function App() {
   const [showedMovies, setShowedMovies] = useState([]);
 
   // saved movies
-  // const [ savedMovies, setSavedMovies ] = useState([]);
+  const [ savedMovies, setSavedMovies ] = useState([]);
 
   // show/hide movies card list
   const [isShowMoviesCardList, setIsShowMoviesCardList] = useState(false);
@@ -143,8 +143,21 @@ function App() {
       return;
     }
     console.log('effect for filtration');
+
     getFilteredMovies();
   }, [movies, checkboxState]);
+
+  // effect for get saved movies
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
+
+    getSavedMovies(headers);
+  }, []);
 
   // effect for showed movies
   useEffect(() => {
@@ -309,6 +322,65 @@ function App() {
     }
   };
 
+  // get saved movies
+  const getSavedMovies = (headers) => {
+    mainApi.getSavedMovies(headers).then((res) => {
+      setSavedMovies(res);
+    }).catch((err) => {
+      console.log('ERROR all saved movies - ' + JSON.stringify(err));
+    })
+  }
+
+  // add favorite movie handler
+  const onAddFavoriteMovie = (favoriteMovie) => {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    };
+    const image = `${MOVIES_IMAGE_API_URL}${favoriteMovie.image.url}`;
+    const thumbnail = `${MOVIES_IMAGE_API_URL}${favoriteMovie.image.formats.thumbnail.url}`;
+
+    // movie object for send to server
+    const movieObj = {
+      nameRU: favoriteMovie.nameRU,
+      nameEN: favoriteMovie.nameEN,
+      director: favoriteMovie.director,
+      country: favoriteMovie.country,
+      year: favoriteMovie.year,
+      duration: favoriteMovie.duration,
+      description: favoriteMovie.description,
+      trailerLink: favoriteMovie.trailerLink,
+      image: image,
+      thumbnail: thumbnail,
+      movieId: favoriteMovie.id
+    }
+
+    mainApi.addFavoriteMovie(movieObj, headers).then((res) => {
+      console.log('add  favoritye movie is - ' + res);
+      getSavedMovies(headers);
+    }).catch((err) => {
+      console.log('ERROR add  favoritye movie is - ' + err);
+    })
+  };
+
+  // remove favorite movie handler
+  const onRemoveFavoriteMovie = (favoriteMovieID) => {
+    const token = localStorage.getItem('token');
+
+    mainApi.removeFavoriteMovie(favoriteMovieID, {
+      'Content-type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    }).then((res) => {
+      const updateSavedMovies = savedMovies.filter((movie) => movie._id !== favoriteMovieID);
+      setSavedMovies(updateSavedMovies);
+    }).catch((err) => {
+      console.log('ERROR remove favorite movie - ' + err);
+    })
+  }
+
   return (
     <div className='App'>
       <CurrentUserContext.Provider value={currentUser}>
@@ -337,6 +409,7 @@ function App() {
                   isLoggedIn={isLoggedIn}
                   element={Movies}
                   moviesCards={showedMovies}
+                  savedMovies={savedMovies}
                   onSearchMovies={onSearchMovies}
                   searchInputValue={searchInputValue}
                   onChangeCheckbox={onChangeCheckbox}
@@ -348,6 +421,8 @@ function App() {
                   isShowErrorMessage={isShowErrorMessage}
                   onShowNextMovies={showNextMoives}
                   isNextMoviesButtonShowed={isNextMoviesButtonShowed}
+                  onAddFavoriteMovie={onAddFavoriteMovie}
+                  onRemoveFavoriteMovie={onRemoveFavoriteMovie}
                 />
               }
             />
@@ -358,6 +433,7 @@ function App() {
                   isLoggedIn={isLoggedIn}
                   element={SavedMovies}
                   moviesCards={savedMovies}
+                  onRemoveFavoriteMovie={onRemoveFavoriteMovie}
                 />
               }
             />

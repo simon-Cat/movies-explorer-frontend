@@ -5,7 +5,10 @@ import { useLocation } from 'react-router-dom';
 const MoviesCardList = ({
   onShowNextMovies,
   isNextMoviesButtonShowed,
+  savedMovies,
   cards,
+  onAddFavoriteMovie,
+  onRemoveFavoriteMovie
 }) => {
   const location = useLocation();
 
@@ -19,7 +22,7 @@ const MoviesCardList = ({
     >
       <ul className={`movies-cards-container__list`}>
         {cards.map((item, index) => (
-          <MoviesCard key={item.id} card={item} />
+          <MoviesCard savedMovies={savedMovies} key={item.id || item.movieId} onRemoveFavoriteMovie={onRemoveFavoriteMovie} onAddFavoriteMovie={onAddFavoriteMovie} card={item} />
         ))}
       </ul>
       {location.pathname === '/movies' && (

@@ -3,6 +3,7 @@ import { SearchForm, MoviesCardList, Preloader } from '../';
 
 const Movies = ({
   externalClass,
+  savedMovies,
   moviesCards,
   onSearchMovies,
   searchInputValue,
@@ -15,6 +16,8 @@ const Movies = ({
   isShowErrorMessage,
   onShowNextMovies,
   isNextMoviesButtonShowed,
+  onAddFavoriteMovie,
+  onRemoveFavoriteMovie
 }) => {
   return (
     <section className={`movies-container`}>
@@ -29,7 +32,10 @@ const Movies = ({
         <MoviesCardList
           onShowNextMovies={onShowNextMovies}
           isNextMoviesButtonShowed={isNextMoviesButtonShowed}
+          savedMovies={savedMovies}
           cards={moviesCards}
+          onAddFavoriteMovie={onAddFavoriteMovie}
+          onRemoveFavoriteMovie={onRemoveFavoriteMovie}
         />
       )}
       {isShowNoResultMessage && <p>Ничего не найдено</p>}

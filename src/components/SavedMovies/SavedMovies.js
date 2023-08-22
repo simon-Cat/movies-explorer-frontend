@@ -1,12 +1,12 @@
 import './SavedMovies.css';
 import { SearchForm, MoviesCardList } from '../';
-import { savedMovies } from '../../utils/data';
+// import { savedMovies } from '../../utils/data';
 
-const SavedMovies = ({ externalClass, savedMoviesCards }) => {
+const SavedMovies = ({ externalClass, moviesCards, onRemoveFavoriteMovie }) => {
   return (
     <section className={`saved-movies-container ${externalClass}`}>
       <SearchForm />
-      <MoviesCardList cards={ savedMovies } />
+      <MoviesCardList onRemoveFavoriteMovie={onRemoveFavoriteMovie} cards={ moviesCards } />
     </section>
   );
 };

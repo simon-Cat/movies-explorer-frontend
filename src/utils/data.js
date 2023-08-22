@@ -240,24 +240,28 @@ export const movies = [
 // test data for saved movies
 export const savedMovies = [
   {
-    id: 22,
-    title: '33 слова о дизайне',
+    movieId: 22,
+    nameRU: '33 слова о дизайне',
     duration: '1ч42м',
     like: false,
     url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
+    image: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
   },
   {
-    id: 23,
-    title: '33 слова о дизайне',
+    movieId: 23,
+    nameRU: '33 слова о дизайне',
     duration: '1ч42м',
     like: false,
     url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
+    image: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
   },
   {
-    id: 24,
-    title: '33 слова о дизайне',
+    movieId: 24,
+    nameRU: '33 слова о дизайне',
     duration: '1ч42м',
     like: false,
     url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
+    image: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
   },
+
 ];
