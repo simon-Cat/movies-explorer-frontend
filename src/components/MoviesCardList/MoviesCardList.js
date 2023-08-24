@@ -6,7 +6,7 @@ const MoviesCardList = ({
   onShowNextMovies,
   isNextMoviesButtonShowed,
   savedMovies,
-  cards,
+  movies,
   onAddFavoriteMovie,
   onRemoveFavoriteMovie
 }) => {
@@ -21,7 +21,7 @@ const MoviesCardList = ({
       }`}
     >
       <ul className={`movies-cards-container__list`}>
-        {cards.map((item, index) => (
+        {movies.map((item, index) => (
           <MoviesCard savedMovies={savedMovies} key={item.id || item.movieId} onRemoveFavoriteMovie={onRemoveFavoriteMovie} onAddFavoriteMovie={onAddFavoriteMovie} card={item} />
         ))}
       </ul>

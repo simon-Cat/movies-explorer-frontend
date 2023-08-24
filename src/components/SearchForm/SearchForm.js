@@ -1,14 +1,15 @@
 import './SearchForm.css';
 import { FilterCheckbox } from '../';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const SearchForm = ({
-  onSubmit,
-  onChangeCheckbox,
-  checkboxState,
-  inputValue,
-  onChangeInputValue,
-}) => {
+const SearchForm = ({ onSubmit, searchRequestData }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    const { inputValue } = searchRequestData;
+    setInputValue(inputValue);
+  }, [searchRequestData]);
+
   // if value is not passed, show message
   const [showMessage, setShowMessage] = useState(false);
 
@@ -21,14 +22,14 @@ const SearchForm = ({
       return;
     } else {
       setShowMessage(false);
-      onSubmit(inputValue);
+      onSubmit({ inputValue: inputValue });
     }
   };
 
   // input change handler
   const changeHandler = (e) => {
     const value = e.target.value;
-    onChangeInputValue(value);
+    setInputValue(value);
   };
 
   return (
@@ -61,8 +62,8 @@ const SearchForm = ({
           <button className='search-form-container__button' />
         </div>
         <FilterCheckbox
-          checkboxState={checkboxState}
-          onChangeCheckbox={onChangeCheckbox}
+          searchRequestData={searchRequestData}
+          onChangeCheckbox={onSubmit}
           externalClass={'search-form-container__checkbox'}
         />
       </div>

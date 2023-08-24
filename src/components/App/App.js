@@ -1,5 +1,5 @@
-import './App.css';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import "./App.css";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import {
   Header,
   Main,
@@ -12,13 +12,13 @@ import {
   Register,
   Login,
   ProtectedRoute,
-} from '../';
-import { useState, useEffect } from 'react';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
-import mainApi from '../../utils/MainApi';
-import { getMovies } from '../../utils/MoviesApi';
-import { filterOutMovies, checkWindowWidth } from '../../utils/utilsFuncs';
-import { MOVIES_IMAGE_API_URL } from '../../utils/baseUrls';
+} from "../";
+import { useState, useEffect } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import mainApi from "../../utils/MainApi";
+import { getMovies } from "../../utils/MoviesApi";
+import { checkWindowWidth } from "../../utils/utilsFuncs";
+import { MOVIES_IMAGE_API_URL } from "../../utils/baseUrls";
 
 function App() {
   // resize handler
@@ -29,13 +29,13 @@ function App() {
     checkWindowWidth(windowWidth, moviesCount, setMoviesCount);
 
     // add event listener
-    const resizeEvent = window.addEventListener('resize', (e) => {
+    const resizeEvent = window.addEventListener("resize", (e) => {
       const windowWidth = e.target.outerWidth;
       setTimeout(() => {
         checkWindowWidth(windowWidth, moviesCount, setMoviesCount);
       }, 2000);
     });
-    return window.removeEventListener('resize', resizeEvent);
+    return window.removeEventListener("resize", resizeEvent);
   }, []);
 
   // location
@@ -53,17 +53,29 @@ function App() {
   // show/hide popup
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
+  // -----------------------------------------------------
+
   // movies array
   const [movies, setMovies] = useState([]);
 
-  // filtred movies
-  const [filtredMovies, setFiltredMovies] = useState([]);
+  // movies search request
+  const [moviesSearchRequest, setMoviesSearchRequest] = useState({
+    inputValue: "",
+    checkboxState: false,
+  });
 
-  // showed movies
-  const [showedMovies, setShowedMovies] = useState([]);
+  // -------------------------------------------------------
 
+  // ------------------------------------------------
   // saved movies
-  const [ savedMovies, setSavedMovies ] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
+
+  // saved movies search request
+  const [savedMoviesSearchRequest, setSavedMoviesSearchRequest] = useState({
+    inputValue: "",
+    checkboxState: false,
+  });
+  // ------------------------------------------------
 
   // show/hide movies card list
   const [isShowMoviesCardList, setIsShowMoviesCardList] = useState(false);
@@ -88,33 +100,8 @@ function App() {
     additionalCount: null,
   });
 
-  // show/hide button for show
-  // next movies
-  const [isNextMoviesButtonShowed, setIsNextMoviesButtonShowed] =
-    useState(true);
-
-  // value of user's input
-  const [searchInputValue, setSearchInputValue] = useState('');
-
-  // state of filter checkbox
-  const [checkboxState, setCheckboxState] = useState(false);
-
-  // user data from local storage
   useEffect(() => {
-    if (!movies.length) {
-      const ls = localStorage.getItem('data');
-      if (ls) {
-        const data = JSON.parse(ls);
-
-        onChangeCheckbox(data.checkbox);
-        onChangeInputValue(data.inputValue);
-        onChangeFiltredMovies(data.filtredMovies);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem("token")) {
       setIsLoggedIn(true);
     }
   }, []);
@@ -123,13 +110,13 @@ function App() {
     if (isLoggedIn) {
       Promise.all([
         mainApi.getUserInfo({
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          "Content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         }),
       ])
         .then(([{ name, email }]) => {
           setCurrentUser({ ...currentUser, name, email });
-          navigate('/movies');
+          navigate("/movies");
         })
         .catch((err) => {
           console.log(err);
@@ -137,15 +124,6 @@ function App() {
     } else return;
   }, [isLoggedIn]);
 
-  // effect for filtration
-  useEffect(() => {
-    if (!movies.length) {
-      return;
-    }
-    console.log('effect for filtration');
-
-    getFilteredMovies();
-  }, [movies, checkboxState]);
 
   // effect for get saved movies
   useEffect(() => {
@@ -159,36 +137,6 @@ function App() {
     getSavedMovies(headers);
   }, []);
 
-  // effect for showed movies
-  useEffect(() => {
-    // if movies array is empty
-    //  hide no result message
-    if (!movies.length && !filtredMovies.length) {
-      return;
-    } else {
-      checkFiltredMoviesLength();
-    }
-    console.log('effect for showed movies');
-
-    // save data into LS
-    localStorage.setItem(
-      'data',
-      JSON.stringify({
-        filtredMovies: filtredMovies,
-        inputValue: searchInputValue,
-        checkbox: checkboxState,
-      })
-    );
-
-    getShowedMovies();
-  }, [filtredMovies, moviesCount]);
-
-  // effect for show/hide button for
-  // show next movies
-  useEffect(() => {
-    changeStateOfNextMoviesButton();
-  }, [showedMovies]);
-
   // switch popup state
   const handleSwitchPopupState = () => {
     setIsPopupOpened(!isPopupOpened);
@@ -196,7 +144,7 @@ function App() {
 
   // signin
   const onLogin = (token) => {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
     setIsLoggedIn(true);
   };
 
@@ -204,7 +152,7 @@ function App() {
   const onSignOut = () => {
     localStorage.clear();
     setIsLoggedIn(false);
-    navigate('/');
+    navigate("/");
   };
 
   // update profile handler
@@ -212,61 +160,13 @@ function App() {
     setCurrentUser({ ...currentUser, ...updatedUserData });
   };
 
-  // change state for input value
-  const onChangeInputValue = (searchValue) => {
-    setSearchInputValue(searchValue);
-  };
-
-  // change state for filtred movies
-  const onChangeFiltredMovies = (value) => {
-    setFiltredMovies(value);
-  };
-
-  // filter out movies handler
-  const getFilteredMovies = () => {
-    console.log('getFilteredMovies');
-    const currentFiltrerdMovies = filterOutMovies(
-      movies,
-      searchInputValue.toLocaleLowerCase(),
-      checkboxState
-    );
-
-    setFiltredMovies(currentFiltrerdMovies);
-  };
-
-  // get showed movies
-  const getShowedMovies = () => {
-    const currentShowedMovies = filtredMovies.slice(
-      0,
-      moviesCount.initialCount
-    );
-    setShowedMovies(currentShowedMovies);
-  };
-
   // search movies
   const onSearchMovies = (searchValue) => {
-    setIsShowNoResultMessage(false);
-    setIsShowErrorMessage(false);
-    setIsShowMoviesCardList(false);
-    onLoading();
-
-    getMovies()
-      .then((res) => {
-        onLoading();
-        setMovies(res);
-      })
-      .catch((err) => {
-        onLoading();
-        setIsShowErrorMessage(true);
-      });
-  };
-
-  // change checkbox state
-  const onChangeCheckbox = (state) => {
-    if (localStorage.getItem('data') && !movies.length) {
+    if (!movies.length) {
       setIsShowNoResultMessage(false);
       setIsShowErrorMessage(false);
       setIsShowMoviesCardList(false);
+
       onLoading();
 
       getMovies()
@@ -279,11 +179,11 @@ function App() {
           setIsShowErrorMessage(true);
         });
     }
-    setCheckboxState(state);
+    setMoviesSearchRequest({...moviesSearchRequest, ...searchValue});
   };
 
   // check filtered movies length
-  const checkFiltredMoviesLength = () => {
+  const checkFiltredMoviesLength = (filtredMovies) => {
     if (filtredMovies.length > 0) {
       // hide no result's message
       setIsShowNoResultMessage(false);
@@ -297,46 +197,25 @@ function App() {
     }
   };
 
-  // show next movies
-  const showNextMoives = () => {
-    // length of showed movies array
-    const showedMoviesLength = showedMovies.length;
-    // array of additional movies
-    const additionalMovies = filtredMovies.slice(
-      showedMoviesLength,
-      showedMoviesLength + moviesCount.additionalCount
-    );
-    setShowedMovies([...showedMovies, ...additionalMovies]);
-  };
-
-  // show/hide button to show
-  // next movies
-  const changeStateOfNextMoviesButton = () => {
-    const showedMoviesLength = showedMovies.length;
-    const filtredMoviesLength = filtredMovies.length;
-
-    if (showedMoviesLength >= filtredMoviesLength) {
-      setIsNextMoviesButtonShowed(false);
-    } else {
-      setIsNextMoviesButtonShowed(true);
-    }
-  };
-
   // get saved movies
   const getSavedMovies = (headers) => {
-    mainApi.getSavedMovies(headers).then((res) => {
-      setSavedMovies(res);
-    }).catch((err) => {
-      console.log('ERROR all saved movies - ' + JSON.stringify(err));
-    })
-  }
+    mainApi
+      .getSavedMovies(headers)
+      .then((res) => {
+        setSavedMovies(res);
+        // setFiltredSavedMovies(res);
+      })
+      .catch((err) => {
+        console.log("ERROR all saved movies - " + JSON.stringify(err));
+      });
+  };
 
   // add favorite movie handler
   const onAddFavoriteMovie = (favoriteMovie) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const headers = {
-      'Content-type': 'application/json',
-      Accept: 'application/json',
+      "Content-type": "application/json",
+      Accept: "application/json",
       Authorization: `Bearer ${token}`,
     };
     const image = `${MOVIES_IMAGE_API_URL}${favoriteMovie.image.url}`;
@@ -354,91 +233,104 @@ function App() {
       trailerLink: favoriteMovie.trailerLink,
       image: image,
       thumbnail: thumbnail,
-      movieId: favoriteMovie.id
-    }
+      movieId: favoriteMovie.id,
+    };
 
-    mainApi.addFavoriteMovie(movieObj, headers).then((res) => {
-      console.log('add  favoritye movie is - ' + res);
-      getSavedMovies(headers);
-    }).catch((err) => {
-      console.log('ERROR add  favoritye movie is - ' + err);
-    })
+    mainApi
+      .addFavoriteMovie(movieObj, headers)
+      .then((res) => {
+        console.log("add  favoritye movie is - " + res);
+        getSavedMovies(headers);
+      })
+      .catch((err) => {
+        console.log("ERROR add  favoritye movie is - " + err);
+      });
   };
 
   // remove favorite movie handler
   const onRemoveFavoriteMovie = (favoriteMovieID) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
-    mainApi.removeFavoriteMovie(favoriteMovieID, {
-      'Content-type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
-    }).then((res) => {
-      const updateSavedMovies = savedMovies.filter((movie) => movie._id !== favoriteMovieID);
-      setSavedMovies(updateSavedMovies);
-    }).catch((err) => {
-      console.log('ERROR remove favorite movie - ' + err);
-    })
-  }
+    mainApi
+      .removeFavoriteMovie(favoriteMovieID, {
+        "Content-type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      })
+      .then((res) => {
+        const updateSavedMovies = savedMovies.filter(
+          (movie) => movie._id !== favoriteMovieID
+        );
+        setSavedMovies(updateSavedMovies);
+      })
+      .catch((err) => {
+        console.log("ERROR remove favorite movie - " + err);
+      });
+  };
+
+  // submit form into saved movies
+  const onSubmitSavedMoviesForm = (searchValue) => {
+    setSavedMoviesSearchRequest({ ...savedMoviesSearchRequest, ...searchValue });
+  };
 
   return (
-    <div className='App'>
+    <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
-        {(location.pathname === '/' ||
-          location.pathname === '/movies' ||
-          location.pathname === '/saved-movies' ||
-          location.pathname === '/profile') && (
+        {(location.pathname === "/" ||
+          location.pathname === "/movies" ||
+          location.pathname === "/saved-movies" ||
+          location.pathname === "/profile") && (
           <Header
-            externalClass='app__header-container'
+            externalClass="app__header-container"
             location={location}
             switchPopupStateHandler={handleSwitchPopupState}
             isLoggedIn={isLoggedIn}
           />
         )}
-        <main className='app__main-container'>
+        <main className="app__main-container">
           <Routes>
-            <Route path='*' element={<NotFoundPage />} />
+            <Route path="*" element={<NotFoundPage />} />
             <Route
-              path='/'
-              element={<Main externalClass='app__main-container' />}
+              path="/"
+              element={<Main externalClass="app__main-container" />}
             />
             <Route
-              path='/movies'
+              path="/movies"
               element={
                 <ProtectedRoute
                   isLoggedIn={isLoggedIn}
                   element={Movies}
-                  moviesCards={showedMovies}
+                  movies={movies}
                   savedMovies={savedMovies}
+                  moviesCount={moviesCount}
                   onSearchMovies={onSearchMovies}
-                  searchInputValue={searchInputValue}
-                  onChangeCheckbox={onChangeCheckbox}
-                  checkboxState={checkboxState}
-                  onChangeInputValue={onChangeInputValue}
+                  moviesSearchRequest={moviesSearchRequest}
+                  onChangeRequestData={setMoviesSearchRequest}
                   isShowPreloader={isShowPreloader}
                   isShowMoviesCardList={isShowMoviesCardList}
                   isShowNoResultMessage={isShowNoResultMessage}
                   isShowErrorMessage={isShowErrorMessage}
-                  onShowNextMovies={showNextMoives}
-                  isNextMoviesButtonShowed={isNextMoviesButtonShowed}
                   onAddFavoriteMovie={onAddFavoriteMovie}
                   onRemoveFavoriteMovie={onRemoveFavoriteMovie}
+                  checkFiltredMoviesLength={checkFiltredMoviesLength}
                 />
               }
             />
             <Route
-              path='/saved-movies'
+              path="/saved-movies"
               element={
                 <ProtectedRoute
                   isLoggedIn={isLoggedIn}
                   element={SavedMovies}
-                  moviesCards={savedMovies}
+                  savedMovies={savedMovies}
                   onRemoveFavoriteMovie={onRemoveFavoriteMovie}
+                  savedMoviesSearchRequest={savedMoviesSearchRequest}
+                  onSearchMovies={onSubmitSavedMoviesForm}
                 />
               }
             />
             <Route
-              path='/profile'
+              path="/profile"
               element={
                 <ProtectedRoute
                   isLoggedIn={isLoggedIn}
@@ -449,23 +341,23 @@ function App() {
               }
             />
             <Route
-              path='/signin'
+              path="/signin"
               element={
-                <Login externalClass='app__login-container' onLogin={onLogin} />
+                <Login externalClass="app__login-container" onLogin={onLogin} />
               }
             />
             <Route
-              path='/signup'
-              element={<Register externalClass='app__register-container' />}
+              path="/signup"
+              element={<Register externalClass="app__register-container" />}
             />
           </Routes>
         </main>
-        {(location.pathname === '/' ||
-          location.pathname === '/movies' ||
-          location.pathname === '/saved-movies') && (
-          <Footer externalClass='app__footer-container' />
+        {(location.pathname === "/" ||
+          location.pathname === "/movies" ||
+          location.pathname === "/saved-movies") && (
+          <Footer externalClass="app__footer-container" />
         )}
-        <Popup name='layer' isOpen={isPopupOpened} />
+        <Popup name="layer" isOpen={isPopupOpened} />
       </CurrentUserContext.Provider>
     </div>
   );
