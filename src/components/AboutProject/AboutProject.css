@@ -54,14 +54,14 @@
 }
 
 .about-project-container__description-line__fill_light {
-  background: #F2F2F2;
+  background: #f2f2f2;
 }
 
 .about-project-container__subtext {
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
-  color: #A0A0A0;
+  color: #a0a0a0;
   text-align: center;
 }
 

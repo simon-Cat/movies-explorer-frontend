@@ -11,7 +11,7 @@ export const checkWindowWidth = (windowWidth, stateValue, stateFunction) => {
 
 // filter out movies
 export const filterOutMovies = (movies, inputValue, checkboxValue) => {
-    const filtredMovies = movies.filter((movie) => {
+  const filtredMovies = movies.filter((movie) => {
     const movieNameRU = movie.nameRU.trim().toLowerCase();
     const movieNameEN = movie.nameEN.trim().toLowerCase();
     const movieDuration = movie.duration;

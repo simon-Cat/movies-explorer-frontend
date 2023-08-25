@@ -13,7 +13,7 @@
 .movie-card__description {
   display: flex;
   padding-bottom: 29px;
-  border-bottom: 1px #E8E8E8 solid;
+  border-bottom: 1px #e8e8e8 solid;
   margin-bottom: 6px;
   align-items: center;
   justify-content: space-between;
@@ -33,15 +33,18 @@
 }
 
 .movie-card__button_type_filled-like {
-  background: url('../../images/icons/like_filled-min.svg') no-repeat center #F9F9F9;
+  background: url("../../images/icons/like_filled-min.svg") no-repeat center
+    #f9f9f9;
 }
 
 .movie-card__button_type__not-filled-like {
-  background: url('../../images/icons/like_not-filled-min.svg') no-repeat center #F9F9F9;
+  background: url("../../images/icons/like_not-filled-min.svg") no-repeat center
+    #f9f9f9;
 }
 
 .movie-card__button_type_remove-saved-movie {
-  background: url('../../images/icons/remove_button-min.svg') no-repeat center #F9F9F9;
+  background: url("../../images/icons/remove_button-min.svg") no-repeat center
+    #f9f9f9;
   opacity: 0;
 }
 
@@ -52,7 +55,7 @@
 .movie-card__duration {
   font-size: 11px;
   font-weight: 400;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 @media screen and (max-width: 768px) {
@@ -71,7 +74,7 @@
 
 @media screen and (max-width: 320px) {
   .movie-card {
-    max-width:300px;
+    max-width: 300px;
   }
 
   .movie-card__image {

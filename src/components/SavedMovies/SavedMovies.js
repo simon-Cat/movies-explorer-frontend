@@ -1,7 +1,7 @@
-import "./SavedMovies.css";
-import { SearchForm, MoviesCardList } from "../";
-import { useEffect, useState } from "react";
-import { filterOutMovies } from "../../utils/utilsFuncs";
+import './SavedMovies.css';
+import { SearchForm, MoviesCardList } from '../';
+import { useEffect, useState } from 'react';
+import { filterOutMovies } from '../../utils/utilsFuncs';
 
 const SavedMovies = ({
   externalClass,

@@ -1,16 +1,16 @@
 import './Navigation.css';
 import { Link, NavLink } from 'react-router-dom';
-import { navigationLinks } from '../../utils/data';
+import { NAVIGATION_LINKS } from '../../utils/data';
 
 const Navigation = ({ externalClass, closeNavigationHandler }) => {
   const handleCloseNavigation = () => {
     closeNavigationHandler();
-  }
+  };
 
   return (
     <nav className={`navigation-container ${externalClass}`}>
       <ul className='navigation-container__links'>
-        {navigationLinks.map((navigationLink, index) => (
+        {NAVIGATION_LINKS.map((navigationLink, index) => (
           <li key={index} className='navigation-container__link-item'>
             <NavLink
               to={navigationLink.url}
@@ -29,7 +29,10 @@ const Navigation = ({ externalClass, closeNavigationHandler }) => {
         <span className='navigation-container__profile-icon' />
         Аккаунт
       </Link>
-      <button onClick={handleCloseNavigation} className='navigation-container__close-button' />
+      <button
+        onClick={handleCloseNavigation}
+        className='navigation-container__close-button'
+      />
     </nav>
   );
 };

@@ -1,0 +1,28 @@
+.server-error-messgae-container {
+  padding: 40px 70px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.server-error-messgae-container__title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  max-width: 690px;
+}
+
+@media screen and (max-width: 768px) {
+  .server-error-messgae-container {
+    padding: 40px 30px 10px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .no-results-container {
+    padding: 40px 10px 10px;
+  }
+
+  .server-error-messgae-container__title {
+    font-size: 14px;
+  }
+}

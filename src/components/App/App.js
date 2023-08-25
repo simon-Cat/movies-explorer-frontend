@@ -1,5 +1,5 @@
-import "./App.css";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import './App.css';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import {
   Header,
   Main,
@@ -12,13 +12,13 @@ import {
   Register,
   Login,
   ProtectedRoute,
-} from "../";
-import { useState, useEffect } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-import mainApi from "../../utils/MainApi";
-import { getMovies } from "../../utils/MoviesApi";
-import { checkWindowWidth } from "../../utils/utilsFuncs";
-import { MOVIES_IMAGE_API_URL } from "../../utils/baseUrls";
+} from '../';
+import { useState, useEffect } from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import mainApi from '../../utils/MainApi';
+import { getMovies } from '../../utils/MoviesApi';
+import { checkWindowWidth } from '../../utils/utilsFuncs';
+import { MOVIES_IMAGE_API_URL } from '../../utils/baseUrls';
 
 function App() {
   // resize handler
@@ -29,13 +29,13 @@ function App() {
     checkWindowWidth(windowWidth, moviesCount, setMoviesCount);
 
     // add event listener
-    const resizeEvent = window.addEventListener("resize", (e) => {
+    const resizeEvent = window.addEventListener('resize', (e) => {
       const windowWidth = e.target.outerWidth;
       setTimeout(() => {
         checkWindowWidth(windowWidth, moviesCount, setMoviesCount);
       }, 2000);
     });
-    return window.removeEventListener("resize", resizeEvent);
+    return window.removeEventListener('resize', resizeEvent);
   }, []);
 
   // location
@@ -53,29 +53,23 @@ function App() {
   // show/hide popup
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
-  // -----------------------------------------------------
-
   // movies array
   const [movies, setMovies] = useState([]);
 
   // movies search request
   const [moviesSearchRequest, setMoviesSearchRequest] = useState({
-    inputValue: "",
+    inputValue: '',
     checkboxState: false,
   });
 
-  // -------------------------------------------------------
-
-  // ------------------------------------------------
   // saved movies
   const [savedMovies, setSavedMovies] = useState([]);
 
   // saved movies search request
   const [savedMoviesSearchRequest, setSavedMoviesSearchRequest] = useState({
-    inputValue: "",
+    inputValue: '',
     checkboxState: false,
   });
-  // ------------------------------------------------
 
   // show/hide movies card list
   const [isShowMoviesCardList, setIsShowMoviesCardList] = useState(false);
@@ -101,7 +95,7 @@ function App() {
   });
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem('token')) {
       setIsLoggedIn(true);
     }
   }, []);
@@ -110,13 +104,13 @@ function App() {
     if (isLoggedIn) {
       Promise.all([
         mainApi.getUserInfo({
-          "Content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         }),
       ])
         .then(([{ name, email }]) => {
           setCurrentUser({ ...currentUser, name, email });
-          navigate("/movies");
+          navigate('/movies');
         })
         .catch((err) => {
           console.log(err);
@@ -124,17 +118,18 @@ function App() {
     } else return;
   }, [isLoggedIn]);
 
-
   // effect for get saved movies
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const headers = {
-      'Content-type': 'application/json',
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
-    };
+    if (token) {
+      const headers = {
+        'Content-type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
 
-    getSavedMovies(headers);
+      getSavedMovies(headers);
+    }
   }, []);
 
   // switch popup state
@@ -144,7 +139,7 @@ function App() {
 
   // signin
   const onLogin = (token) => {
-    localStorage.setItem("token", token);
+    localStorage.setItem('token', token);
     setIsLoggedIn(true);
   };
 
@@ -152,7 +147,7 @@ function App() {
   const onSignOut = () => {
     localStorage.clear();
     setIsLoggedIn(false);
-    navigate("/");
+    navigate('/');
   };
 
   // update profile handler
@@ -179,7 +174,7 @@ function App() {
           setIsShowErrorMessage(true);
         });
     }
-    setMoviesSearchRequest({...moviesSearchRequest, ...searchValue});
+    setMoviesSearchRequest({ ...moviesSearchRequest, ...searchValue });
   };
 
   // check filtered movies length
@@ -203,19 +198,18 @@ function App() {
       .getSavedMovies(headers)
       .then((res) => {
         setSavedMovies(res);
-        // setFiltredSavedMovies(res);
       })
       .catch((err) => {
-        console.log("ERROR all saved movies - " + JSON.stringify(err));
+        console.log(err);
       });
   };
 
   // add favorite movie handler
   const onAddFavoriteMovie = (favoriteMovie) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const headers = {
-      "Content-type": "application/json",
-      Accept: "application/json",
+      'Content-type': 'application/json',
+      Accept: 'application/json',
       Authorization: `Bearer ${token}`,
     };
     const image = `${MOVIES_IMAGE_API_URL}${favoriteMovie.image.url}`;
@@ -239,22 +233,21 @@ function App() {
     mainApi
       .addFavoriteMovie(movieObj, headers)
       .then((res) => {
-        console.log("add  favoritye movie is - " + res);
         getSavedMovies(headers);
       })
       .catch((err) => {
-        console.log("ERROR add  favoritye movie is - " + err);
+        console.log(err);
       });
   };
 
   // remove favorite movie handler
   const onRemoveFavoriteMovie = (favoriteMovieID) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
 
     mainApi
       .removeFavoriteMovie(favoriteMovieID, {
-        "Content-type": "application/json",
-        Accept: "application/json",
+        'Content-type': 'application/json',
+        Accept: 'application/json',
         Authorization: `Bearer ${token}`,
       })
       .then((res) => {
@@ -264,38 +257,41 @@ function App() {
         setSavedMovies(updateSavedMovies);
       })
       .catch((err) => {
-        console.log("ERROR remove favorite movie - " + err);
+        console.log(err);
       });
   };
 
   // submit form into saved movies
   const onSubmitSavedMoviesForm = (searchValue) => {
-    setSavedMoviesSearchRequest({ ...savedMoviesSearchRequest, ...searchValue });
+    setSavedMoviesSearchRequest({
+      ...savedMoviesSearchRequest,
+      ...searchValue,
+    });
   };
 
   return (
-    <div className="App">
+    <div className='App'>
       <CurrentUserContext.Provider value={currentUser}>
-        {(location.pathname === "/" ||
-          location.pathname === "/movies" ||
-          location.pathname === "/saved-movies" ||
-          location.pathname === "/profile") && (
+        {(location.pathname === '/' ||
+          location.pathname === '/movies' ||
+          location.pathname === '/saved-movies' ||
+          location.pathname === '/profile') && (
           <Header
-            externalClass="app__header-container"
+            externalClass='app__header-container'
             location={location}
             switchPopupStateHandler={handleSwitchPopupState}
             isLoggedIn={isLoggedIn}
           />
         )}
-        <main className="app__main-container">
+        <main className='app__main-container'>
           <Routes>
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path='*' element={<NotFoundPage />} />
             <Route
-              path="/"
-              element={<Main externalClass="app__main-container" />}
+              path='/'
+              element={<Main externalClass='app__main-container' />}
             />
             <Route
-              path="/movies"
+              path='/movies'
               element={
                 <ProtectedRoute
                   isLoggedIn={isLoggedIn}
@@ -317,7 +313,7 @@ function App() {
               }
             />
             <Route
-              path="/saved-movies"
+              path='/saved-movies'
               element={
                 <ProtectedRoute
                   isLoggedIn={isLoggedIn}
@@ -330,7 +326,7 @@ function App() {
               }
             />
             <Route
-              path="/profile"
+              path='/profile'
               element={
                 <ProtectedRoute
                   isLoggedIn={isLoggedIn}
@@ -341,23 +337,23 @@ function App() {
               }
             />
             <Route
-              path="/signin"
+              path='/signin'
               element={
-                <Login externalClass="app__login-container" onLogin={onLogin} />
+                <Login externalClass='app__login-container' onLogin={onLogin} />
               }
             />
             <Route
-              path="/signup"
-              element={<Register externalClass="app__register-container" />}
+              path='/signup'
+              element={<Register externalClass='app__register-container' />}
             />
           </Routes>
         </main>
-        {(location.pathname === "/" ||
-          location.pathname === "/movies" ||
-          location.pathname === "/saved-movies") && (
-          <Footer externalClass="app__footer-container" />
+        {(location.pathname === '/' ||
+          location.pathname === '/movies' ||
+          location.pathname === '/saved-movies') && (
+          <Footer externalClass='app__footer-container' />
         )}
-        <Popup name="layer" isOpen={isPopupOpened} />
+        <Popup name='layer' isOpen={isPopupOpened} />
       </CurrentUserContext.Provider>
     </div>
   );

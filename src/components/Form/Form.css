@@ -47,10 +47,10 @@
 .form-container__form-error {
   color: #ff4062;
   height: 12px;
-  margin-bottom: 69px;
   font-size: 10px;
   font-weight: 400;
   display: block;
+  text-align: center;
 }
 
 .form-container__input-error_page_login {

@@ -8,7 +8,7 @@ const MoviesCardList = ({
   savedMovies,
   movies,
   onAddFavoriteMovie,
-  onRemoveFavoriteMovie
+  onRemoveFavoriteMovie,
 }) => {
   const location = useLocation();
 
@@ -22,7 +22,13 @@ const MoviesCardList = ({
     >
       <ul className={`movies-cards-container__list`}>
         {movies.map((item, index) => (
-          <MoviesCard savedMovies={savedMovies} key={item.id || item.movieId} onRemoveFavoriteMovie={onRemoveFavoriteMovie} onAddFavoriteMovie={onAddFavoriteMovie} card={item} />
+          <MoviesCard
+            savedMovies={savedMovies}
+            key={item.id || item.movieId}
+            onRemoveFavoriteMovie={onRemoveFavoriteMovie}
+            onAddFavoriteMovie={onAddFavoriteMovie}
+            card={item}
+          />
         ))}
       </ul>
       {location.pathname === '/movies' && (

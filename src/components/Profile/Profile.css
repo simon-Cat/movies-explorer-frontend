@@ -25,10 +25,10 @@
 
 .profile-container__input-container {
   display: flex;
-  gap: 16px;
-  padding-bottom: 16px;
+  gap: 10px;
   margin-bottom: 17px;
   border-bottom: 1px #e8e8e8 solid;
+  flex-direction: column;
 }
 
 .profile-container__input-container:last-of-type {
@@ -54,7 +54,8 @@
 .form-container__form-error {
   color: #ff4062;
   height: 12px;
-  margin-bottom: 69px;
+  /* margin-bottom: 69px; */
+  margin-top: 69px;
   font-size: 10px;
   font-weight: 400;
   display: block;
@@ -67,11 +68,17 @@
   font-size: 10px;
   font-weight: 400;
   display: block;
+  text-align: center;
+}
+
+.profile-container__wrapper {
+  display: flex;
 }
 
 .profile-container__input-error {
   color: #ff4062;
-  height: 12px;
+  /* height: 12px; */
+  height: 23px;
   font-size: 10px;
   font-weight: 400;
   display: block;

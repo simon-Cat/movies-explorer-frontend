@@ -18,7 +18,9 @@ const Register = ({ externalClass }) => {
 
   // sumbitHandler
   const submitHandler = () => {
-    auth.register(values)
+    const form = document.forms[0];
+    auth
+      .register(values)
       .then((res) => {
         if (res.err) {
           return Promise.reject(res);
@@ -30,7 +32,8 @@ const Register = ({ externalClass }) => {
       })
       .finally(() => {
         resetForm();
-      })
+        form.reset();
+      });
   };
 
   return (
@@ -66,7 +69,9 @@ const Register = ({ externalClass }) => {
                 handleChange(e);
               }}
             />
-            <span className='form-container__input-error'>{errors.name || ''}</span>
+            <span className='form-container__input-error'>
+              {errors.name || ''}
+            </span>
           </li>
           <li className='form-container__input-container'>
             <label htmlFor='user-email' className='form-container__label'>
@@ -83,7 +88,9 @@ const Register = ({ externalClass }) => {
                 handleChange(e);
               }}
             />
-            <span className='form-container__input-error'>{errors.email || ''}</span>
+            <span className='form-container__input-error'>
+              {errors.email || ''}
+            </span>
           </li>
           <li className='form-container__input-container'>
             <label htmlFor='user-password' className='form-container__label'>
@@ -106,7 +113,9 @@ const Register = ({ externalClass }) => {
             </span>
           </li>
         </ul>
-        <span className='form-container__form-error'>{responseError || ''}</span>
+        <span className='form-container__form-error'>
+          {responseError || ''}
+        </span>
       </Form>
     </section>
   );

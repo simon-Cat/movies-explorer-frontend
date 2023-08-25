@@ -25,6 +25,7 @@ import Gamburger from './Gamburger/Gamburger';
 import Popup from './Popup/Popup';
 import Header from './Header/Header';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
+import ServerErrorMessage from './ServerErrorMessage/ServerErrorMessage';
 
 export {
   App,
@@ -54,4 +55,5 @@ export {
   Form,
   NoResults,
   ProtectedRoute,
+  ServerErrorMessage,
 };

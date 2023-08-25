@@ -67,6 +67,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
       >
         <ul className='profile-container__inputs-container'>
           <li className='profile-container__input-container'>
+            <div className='profile-container__wrapper'>
             <label
               htmlFor='profile-name'
               className='profile-container__input-label'
@@ -87,11 +88,13 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
               className='profile-container__input'
               placeholder='Введите имя'
             />
+            </div>
             <span className='profile-container__input-error'>
               {errors.name || ''}
             </span>
           </li>
           <li className='profile-container__input-container'>
+          <div className='profile-container__wrapper'>
             <label
               htmlFor='profile-email'
               className='profile-container__input-label'
@@ -110,6 +113,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
               className='profile-container__input'
               placeholder='Введите email'
             />
+            </div>
             <span className='profile-container__input-error'>
               {errors.email || ''}
             </span>

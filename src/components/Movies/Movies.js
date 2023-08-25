@@ -1,7 +1,13 @@
-import "./Movies.css";
-import { SearchForm, MoviesCardList, Preloader } from "../";
-import { useState, useEffect } from "react";
-import { filterOutMovies } from "../../utils/utilsFuncs";
+import './Movies.css';
+import {
+  SearchForm,
+  MoviesCardList,
+  Preloader,
+  NoResults,
+  ServerErrorMessage,
+} from '../';
+import { useState, useEffect } from 'react';
+import { filterOutMovies } from '../../utils/utilsFuncs';
 
 const Movies = ({
   externalClass,
@@ -29,7 +35,7 @@ const Movies = ({
   // user data from local storage
   useEffect(() => {
     if (!movies.length) {
-      const dataIntoLocakStorage = localStorage.getItem("data");
+      const dataIntoLocakStorage = localStorage.getItem('data');
       if (dataIntoLocakStorage) {
         const data = JSON.parse(dataIntoLocakStorage);
         const inputValue = data.inputValue;
@@ -49,7 +55,7 @@ const Movies = ({
 
   // effect for filtration
   useEffect(() => {
-    const dataIntoLocakStorage = localStorage.getItem("data");
+    const dataIntoLocakStorage = localStorage.getItem('data');
     if (!movies.length && dataIntoLocakStorage) {
       return;
     }
@@ -57,10 +63,6 @@ const Movies = ({
       .trim()
       .toLocaleLowerCase();
     const checkboxState = moviesSearchRequest.checkboxState;
-
-    console.log("effect for filtration");
-
-    console.log("getFilteredMovies");
     const currentFiltrerdMovies = filterOutMovies(
       movies,
       inputValue,
@@ -81,7 +83,6 @@ const Movies = ({
     } else {
       checkFiltredMoviesLength(filtredMovies);
     }
-    console.log("effect for showed movies");
 
     const inputValue = moviesSearchRequest.inputValue
       .trim()
@@ -90,7 +91,7 @@ const Movies = ({
 
     // save data into LS
     localStorage.setItem(
-      "data",
+      'data',
       JSON.stringify({
         filtredMovies: filtredMovies,
         inputValue: inputValue,
@@ -154,13 +155,8 @@ const Movies = ({
           onRemoveFavoriteMovie={onRemoveFavoriteMovie}
         />
       )}
-      {isShowNoResultMessage && <p>Ничего не найдено</p>}
-      {isShowErrorMessage && (
-        <p>
-          Во время запроса произошла ошибка. Возможно, проблема с соединением
-          или сервер недоступен. Подождите немного и попробуйте ещё раз
-        </p>
-      )}
+      {isShowNoResultMessage && <NoResults />}
+      {isShowErrorMessage && <ServerErrorMessage />}
       {isShowPreloader && <Preloader />}
     </section>
   );
