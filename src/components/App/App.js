@@ -110,7 +110,6 @@ function App() {
       ])
         .then(([{ name, email }]) => {
           setCurrentUser({ ...currentUser, name, email });
-          navigate('/movies');
         })
         .catch((err) => {
           console.log(err);
@@ -233,9 +232,7 @@ function App() {
     mainApi
       .addFavoriteMovie(movieObj, headers)
       .then((res) => {
-        console.log('res - ' + JSON.stringify(res));
         setSavedMovies([...savedMovies, res]);
-        // getSavedMovies(headers);
       })
       .catch((err) => {
         console.log(err);
