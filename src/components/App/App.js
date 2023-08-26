@@ -233,7 +233,9 @@ function App() {
     mainApi
       .addFavoriteMovie(movieObj, headers)
       .then((res) => {
-        getSavedMovies(headers);
+        console.log('res - ' + JSON.stringify(res));
+        setSavedMovies([...savedMovies, res]);
+        // getSavedMovies(headers);
       })
       .catch((err) => {
         console.log(err);
