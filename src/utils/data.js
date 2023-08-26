@@ -64,3 +64,21 @@ export const NAVIGATION_LINKS = [
     url: '/saved-movies',
   },
 ];
+
+// window's width
+export const WINDOW_WIDTH_LARGE = 768;
+
+// movie's count for large window's width
+export const MOVIES_COUNT_FOR_LARGE_WIDTH = {
+  initialCount: 16,
+  additionalCount: 4
+};
+
+// movie's count for small window's width
+export const MOVIES_COUNT_FOR_SMALL_WIDTH = {
+  initialCount: 5,
+  additionalCount: 2
+};
+
+// short movies duration
+export const SHORT_MOVIE_DURATION = 40;

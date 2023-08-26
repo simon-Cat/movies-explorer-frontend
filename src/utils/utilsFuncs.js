@@ -1,11 +1,18 @@
+import {
+  WINDOW_WIDTH_LARGE,
+  MOVIES_COUNT_FOR_LARGE_WIDTH,
+  MOVIES_COUNT_FOR_SMALL_WIDTH,
+  SHORT_MOVIE_DURATION,
+} from './data';
+
 // check window width and
 // set initial and additional
 // count of movies
 export const checkWindowWidth = (windowWidth, stateValue, stateFunction) => {
-  if (windowWidth >= 768) {
-    stateFunction({ ...stateValue, initialCount: 16, additionalCount: 4 });
+  if (windowWidth >= WINDOW_WIDTH_LARGE) {
+    stateFunction({ ...stateValue, ...MOVIES_COUNT_FOR_LARGE_WIDTH });
   } else {
-    stateFunction({ ...stateValue, initialCount: 5, additionalCount: 2 });
+    stateFunction({ ...stateValue, ...MOVIES_COUNT_FOR_SMALL_WIDTH });
   }
 };
 
@@ -19,7 +26,7 @@ export const filterOutMovies = (movies, inputValue, checkboxValue) => {
 
     if (checkboxValue) {
       return (
-        movieDuration <= 40 &&
+        movieDuration <= SHORT_MOVIE_DURATION &&
         (movieNameRU.includes(userInputValue) ||
           movieNameEN.includes(userInputValue))
       );
