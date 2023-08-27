@@ -159,6 +159,7 @@ function App() {
   const logoutReset = () => {
     setCurrentUser({});
     setMovies([]);
+    setFiltredMovies([]);
     setMoviesSearchRequest({
       inputValue: '',
       checkboxState: false,
@@ -215,7 +216,6 @@ function App() {
 
   // check filtered movies length
   const checkFiltredMoviesLength = (filtredMovies) => {
-    console.log('filtredMovies - ' +filtredMovies);
     if (filtredMovies.length > 0) {
       // hide no result's message
       setIsShowNoResultMessage(false);
