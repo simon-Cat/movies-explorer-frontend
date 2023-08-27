@@ -119,17 +119,19 @@ function App() {
 
   // effect for get saved movies
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const headers = {
-        'Content-type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      };
+    if (isLoggedIn) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const headers = {
+          'Content-type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        };
 
-      getSavedMovies(headers);
+        getSavedMovies(headers);
+      }
     }
-  }, []);
+  }, [isLoggedIn]);
 
   // switch popup state
   const handleSwitchPopupState = () => {
@@ -145,12 +147,27 @@ function App() {
 
   // signout
   const onSignOut = () => {
-    localStorage.clear();
-    setIsLoggedIn(false);
+    logoutReset();
     navigate('/');
   };
 
   // logout reset
+  const logoutReset = () => {
+    setCurrentUser({});
+    setMovies([]);
+    setMoviesSearchRequest({
+      inputValue: '',
+      checkboxState: false,
+    });
+    setSavedMovies([]);
+    setSavedMoviesSearchRequest({
+      inputValue: '',
+      checkboxState: false,
+    });
+    setIsLoggedIn(false);
+    setIsShowMoviesCardList(false);
+    localStorage.clear();
+  };
 
   // update profile handler
   const onUpdateProfile = (updatedUserData) => {
@@ -346,7 +363,12 @@ function App() {
             />
             <Route
               path='/signup'
-              element={<Register externalClass='app__register-container' onLogin={onLogin} />}
+              element={
+                <Register
+                  externalClass='app__register-container'
+                  onLogin={onLogin}
+                />
+              }
             />
           </Routes>
         </main>
