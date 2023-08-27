@@ -11,7 +11,11 @@ class MainApi {
     if (response.ok) {
       return response.json();
     } else {
-      return Promise.reject('Ошибка запроса!');
+      if (response.status === 409) {
+        return Promise.reject('Пользователь с таким email уже существует');
+      } else {
+        return Promise.reject('Ошибка запроса!');
+      }
     }
   }
 
