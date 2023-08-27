@@ -68,14 +68,11 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       })
       .then((res) => {
-        if (res.err) {
-          return Promise.reject(res);
-        }
         onUpdateProfile(values);
         setSuccessUpdateMessage('Данные успешно обновлены');
       })
       .catch((err) => {
-        setResponseError(err.message);
+        setResponseError(err);
       })
       .finally(() => {
         resetForm();
