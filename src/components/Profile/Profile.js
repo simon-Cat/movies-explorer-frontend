@@ -73,9 +73,6 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
       })
       .catch((err) => {
         setResponseError(err);
-      })
-      .finally(() => {
-        resetForm();
       });
   };
 
