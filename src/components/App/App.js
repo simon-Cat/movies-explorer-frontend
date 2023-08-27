@@ -19,6 +19,7 @@ import mainApi from '../../utils/MainApi';
 import { getMovies } from '../../utils/MoviesApi';
 import { checkWindowWidth } from '../../utils/utilsFuncs';
 import { MOVIES_IMAGE_API_URL } from '../../utils/baseUrls';
+import { filterOutMovies } from '../../utils/utilsFuncs';
 
 function App() {
   // resize handler
@@ -61,6 +62,9 @@ function App() {
     inputValue: '',
     checkboxState: false,
   });
+
+  const [filtredMovies, setFiltredMovies] = useState([]);
+
 
   // saved movies
   const [savedMovies, setSavedMovies] = useState([]);
@@ -175,7 +179,7 @@ function App() {
   };
 
   // search movies
-  const onSearchMovies = (searchValue) => {
+  const onSearchMovies = (checkbox) => {
     if (!movies.length) {
       setIsShowNoResultMessage(false);
       setIsShowErrorMessage(false);
@@ -192,12 +196,26 @@ function App() {
           onLoading();
           setIsShowErrorMessage(true);
         });
+
+        return;
     }
-    setMoviesSearchRequest({ ...moviesSearchRequest, ...searchValue });
+    const inputValue = moviesSearchRequest.inputValue
+      .trim()
+      .toLocaleLowerCase();
+    const checkboxState = checkbox !== undefined ? checkbox : moviesSearchRequest.checkboxState;
+
+    const currentFiltrerdMovies = filterOutMovies(
+      movies,
+      inputValue,
+      checkboxState
+    );
+
+    setFiltredMovies(currentFiltrerdMovies);
   };
 
   // check filtered movies length
   const checkFiltredMoviesLength = (filtredMovies) => {
+    console.log('filtredMovies - ' +filtredMovies);
     if (filtredMovies.length > 0) {
       // hide no result's message
       setIsShowNoResultMessage(false);
@@ -281,11 +299,19 @@ function App() {
   };
 
   // submit form into saved movies
-  const onSubmitSavedMoviesForm = (searchValue) => {
-    setSavedMoviesSearchRequest({
-      ...savedMoviesSearchRequest,
-      ...searchValue,
-    });
+  const onSubmitSavedMoviesForm = (checkbox) => {
+    const inputValue = moviesSearchRequest.inputValue
+      .trim()
+      .toLocaleLowerCase();
+    const checkboxState = checkbox !== undefined ? checkbox : savedMoviesSearchRequest.checkboxState;
+
+    const currentFiltrerdMovies = filterOutMovies(
+      savedMovies,
+      inputValue,
+      checkboxState
+    );
+
+    setSavedMovies(currentFiltrerdMovies);
   };
 
   return (
@@ -328,6 +354,8 @@ function App() {
                   onAddFavoriteMovie={onAddFavoriteMovie}
                   onRemoveFavoriteMovie={onRemoveFavoriteMovie}
                   checkFiltredMoviesLength={checkFiltredMoviesLength}
+                  filtredMovies={filtredMovies}
+                  setFiltredMovies={setFiltredMovies}
                 />
               }
             />
@@ -339,6 +367,7 @@ function App() {
                   element={SavedMovies}
                   savedMovies={savedMovies}
                   onRemoveFavoriteMovie={onRemoveFavoriteMovie}
+                  onChangeRequestData={setSavedMoviesSearchRequest}
                   savedMoviesSearchRequest={savedMoviesSearchRequest}
                   onSearchMovies={onSubmitSavedMoviesForm}
                 />

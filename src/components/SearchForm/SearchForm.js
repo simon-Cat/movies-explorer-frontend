@@ -1,15 +1,8 @@
 import './SearchForm.css';
 import { FilterCheckbox } from '../';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-const SearchForm = ({ onSubmit, searchRequestData }) => {
-  const [inputValue, setInputValue] = useState('');
-
-  useEffect(() => {
-    const { inputValue } = searchRequestData;
-    setInputValue(inputValue);
-  }, [searchRequestData]);
-
+const SearchForm = ({ onSubmit, searchRequestData, onChangeRequestData }) => {
   // if value is not passed, show message
   const [showMessage, setShowMessage] = useState(false);
 
@@ -17,19 +10,19 @@ const SearchForm = ({ onSubmit, searchRequestData }) => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (!inputValue) {
+    if (!searchRequestData.inputValue) {
       setShowMessage(true);
       return;
     } else {
       setShowMessage(false);
-      onSubmit({ inputValue: inputValue });
+      onSubmit();
     }
   };
 
   // input change handler
   const changeHandler = (e) => {
     const value = e.target.value;
-    setInputValue(value);
+    onChangeRequestData({ ...searchRequestData, inputValue: value });
   };
 
   return (
@@ -52,7 +45,7 @@ const SearchForm = ({ onSubmit, searchRequestData }) => {
             id='search-input'
             type='text'
             placeholder='Фильм'
-            value={inputValue}
+            value={searchRequestData.inputValue}
             className='search-form-container__input'
             onInput={(e) => {
               changeHandler(e);
@@ -63,7 +56,9 @@ const SearchForm = ({ onSubmit, searchRequestData }) => {
         </div>
         <FilterCheckbox
           searchRequestData={searchRequestData}
-          onChangeCheckbox={onSubmit}
+          onChangeRequestData={onChangeRequestData}
+          onSubmit={onSubmit}
+          setShowMessage={setShowMessage}
           externalClass={'search-form-container__checkbox'}
         />
       </div>

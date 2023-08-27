@@ -1,28 +1,32 @@
 import './FilterCheckbox.css';
-import { useEffect, useState } from 'react';
 
 const FilterCheckbox = ({
   externalClass,
-  onChangeCheckbox,
+  onChangeRequestData,
   searchRequestData,
+  onSubmit,
+  setShowMessage,
 }) => {
-  const [checkbox, setCheckbox] = useState(false);
-
-  useEffect(() => {
-    const { checkboxState } = searchRequestData;
-    setCheckbox(checkboxState);
-  }, [searchRequestData]);
 
   const changeChekboxHandler = (e) => {
-    const checkboxState = e.target.checked;
-    setCheckbox(checkboxState);
-    onChangeCheckbox({ checkboxState: checkboxState });
+    if (searchRequestData.inputValue === '') {
+      setShowMessage(true);
+      return;
+    } else {
+      setShowMessage(false);
+      const checkboxState = e.target.checked;
+      onChangeRequestData({
+        ...searchRequestData,
+        checkboxState: checkboxState,
+      });
+      onSubmit(checkboxState);
+    }
   };
 
   return (
     <div className={`filter-checkbox-container ${externalClass}`}>
       <input
-        checked={checkbox}
+        checked={searchRequestData.checkboxState}
         onChange={(e) => {
           changeChekboxHandler(e);
         }}
@@ -36,7 +40,7 @@ const FilterCheckbox = ({
       >
         <div
           className={`filter-checkbox-container__custom-checkbox-switcher ${
-            !checkbox
+            !searchRequestData.checkboxState
               ? 'filter-checkbox-container__custom-checkbox-switcher_state_off'
               : 'filter-checkbox-container__custom-checkbox-switcher_state_on'
           }`}

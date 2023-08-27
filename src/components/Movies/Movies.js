@@ -24,8 +24,9 @@ const Movies = ({
   checkFiltredMoviesLength,
   moviesSearchRequest,
   onChangeRequestData,
+  filtredMovies,
+  setFiltredMovies,
 }) => {
-  const [filtredMovies, setFiltredMovies] = useState([]);
   const [showedMovies, setShowedMovies] = useState([]);
   // // show/hide button for show
   // // next movies
@@ -70,11 +71,7 @@ const Movies = ({
     );
 
     setFiltredMovies(currentFiltrerdMovies);
-  }, [
-    movies,
-    moviesSearchRequest.inputValue,
-    moviesSearchRequest.checkboxState,
-  ]);
+  }, [movies]);
 
   // effect for showed movies
   useEffect(() => {
@@ -144,6 +141,7 @@ const Movies = ({
       <SearchForm
         onSubmit={onSearchMovies}
         searchRequestData={moviesSearchRequest}
+        onChangeRequestData={onChangeRequestData}
       />
       {isShowMoviesCardList && (
         <MoviesCardList

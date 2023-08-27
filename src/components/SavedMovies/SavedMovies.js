@@ -8,6 +8,7 @@ const SavedMovies = ({
   savedMovies,
   onRemoveFavoriteMovie,
   savedMoviesSearchRequest,
+  onChangeRequestData,
   onSearchMovies,
 }) => {
   const [showedMovies, setShowedMovies] = useState([]);
@@ -27,22 +28,21 @@ const SavedMovies = ({
     }
 
     setShowedMovies(showedMovies);
-  }, [
-    savedMovies,
-    savedMoviesSearchRequest.inputValue,
-    savedMoviesSearchRequest.checkboxState,
-  ]);
+  }, [savedMovies]);
 
   return (
     <section className={`saved-movies-container ${externalClass}`}>
       <SearchForm
         searchRequestData={savedMoviesSearchRequest}
         onSubmit={onSearchMovies}
+        onChangeRequestData={onChangeRequestData}
       />
-      <MoviesCardList
-        onRemoveFavoriteMovie={onRemoveFavoriteMovie}
-        movies={showedMovies}
-      />
+      {savedMovies.length ? (
+        <MoviesCardList
+          onRemoveFavoriteMovie={onRemoveFavoriteMovie}
+          movies={showedMovies}
+        />
+      ) : null}
     </section>
   );
 };
