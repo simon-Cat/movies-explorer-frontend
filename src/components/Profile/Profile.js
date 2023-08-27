@@ -19,6 +19,9 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   // success update profile message
   const [successUpdateMessage, setSuccessUpdateMessage] = useState('');
 
+  // is same user data
+  const [ isSameUserData, setIsSameUserData ] = useState(true);
+
   useEffect(() => {
     setValues({
       ...values,
@@ -30,6 +33,30 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   const singOutHandler = () => {
     onSignOut();
   };
+
+   // change input handler
+   const onChangeInputHandler = (e) => {
+    const inputname = e.target.name;
+    const inputValue = e.target.value;
+    const { name, email } = values;
+
+    if (inputname === 'name') {
+      const emailValue = email;
+      if (inputValue === currentUser.name && emailValue === currentUser.email) {
+        setIsSameUserData(true);
+      } else {
+        setIsSameUserData(false);
+      }
+    } else {
+      const nameValue = name;
+      if (inputValue === currentUser.email && nameValue === currentUser.name) {
+        setIsSameUserData(true);
+      } else {
+        setIsSameUserData(false);
+      }
+    }
+    handleChange(e);
+  }
 
   // sumbitHandler
   const submitHandler = (e) => {
@@ -81,7 +108,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
               type='text'
               value={values.name}
               onInput={(e) => {
-                handleChange(e);
+                onChangeInputHandler(e);
               }}
               required
               name='name'
@@ -104,7 +131,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
             <input
               id='profile-email'
               onInput={(e) => {
-                handleChange(e);
+                onChangeInputHandler(e);
               }}
               name='email'
               value={values.email}
@@ -127,7 +154,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
         </span>
         <button
           className={`profile-container__form-button ${
-            !isValid ? 'profile-container__form-button_disabled' : ''
+            (!isValid || isSameUserData) ? 'profile-container__form-button_disabled' : ''
           }`}
         >
           Редактировать
