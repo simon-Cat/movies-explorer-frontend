@@ -4,12 +4,9 @@ import { Form } from '../';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
-import { useNavigate } from 'react-router-dom';
 import * as auth from '../../utils/auth';
 
-const Register = ({ externalClass }) => {
-  // navigate
-  const navigate = useNavigate();
+const Register = ({ externalClass, onLogin }) => {
   // register form validation
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
@@ -25,7 +22,12 @@ const Register = ({ externalClass }) => {
         if (res.err) {
           return Promise.reject(res);
         }
-        navigate('/signin', { replace: true });
+        const { email } = res;
+        const { password } = values;
+        auth.login({email, password})
+        .then(({token}) => {
+          onLogin(token);
+        })
       })
       .catch((err) => {
         setResponseError(err.message);

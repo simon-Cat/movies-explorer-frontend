@@ -140,6 +140,7 @@ function App() {
   const onLogin = (token) => {
     localStorage.setItem('token', token);
     setIsLoggedIn(true);
+    navigate('/movies', { replace: true });
   };
 
   // signout
@@ -148,6 +149,8 @@ function App() {
     setIsLoggedIn(false);
     navigate('/');
   };
+
+  // logout reset
 
   // update profile handler
   const onUpdateProfile = (updatedUserData) => {
@@ -343,7 +346,7 @@ function App() {
             />
             <Route
               path='/signup'
-              element={<Register externalClass='app__register-container' />}
+              element={<Register externalClass='app__register-container' onLogin={onLogin} />}
             />
           </Routes>
         </main>
