@@ -40,8 +40,3 @@ export const filterOutMovies = (movies, inputValue, checkboxValue) => {
 
   return filtredMovies;
 };
-
-// save item into local storage
-export const saveItemIntoLocalStorage = (itemName, itemValue) => {
-  localStorage.setItem(itemName, JSON.stringify(itemValue));
-};
