@@ -65,9 +65,10 @@ function App() {
 
   const [filtredMovies, setFiltredMovies] = useState([]);
 
-
   // saved movies
   const [savedMovies, setSavedMovies] = useState([]);
+
+  const [savedFiltredMovies, setSavedFiltredMovies] = useState([]);
 
   // saved movies search request
   const [savedMoviesSearchRequest, setSavedMoviesSearchRequest] = useState({
@@ -83,6 +84,12 @@ function App() {
 
   // show/hide no result message
   const [isShowNoResultMessage, setIsShowNoResultMessage] = useState(false);
+
+  // show/hide no result message
+  const [
+    isShowNoResultMessageForSavedMovies,
+    setIsShowNoResultMessageForSavedMovies,
+  ] = useState(false);
 
   // show/hide error message
   const [isShowErrorMessage, setIsShowErrorMessage] = useState(false);
@@ -131,7 +138,6 @@ function App() {
           Accept: 'application/json',
           Authorization: `Bearer ${token}`,
         };
-
         getSavedMovies(headers);
       }
     }
@@ -165,6 +171,7 @@ function App() {
       checkboxState: false,
     });
     setSavedMovies([]);
+    setSavedFiltredMovies([]);
     setSavedMoviesSearchRequest({
       inputValue: '',
       checkboxState: false,
@@ -198,12 +205,14 @@ function App() {
           setIsShowErrorMessage(true);
         });
 
-        return;
+      return;
     }
+
     const inputValue = moviesSearchRequest.inputValue
       .trim()
       .toLocaleLowerCase();
-    const checkboxState = checkbox !== undefined ? checkbox : moviesSearchRequest.checkboxState;
+    const checkboxState =
+      checkbox !== undefined ? checkbox : moviesSearchRequest.checkboxState;
 
     const currentFiltrerdMovies = filterOutMovies(
       movies,
@@ -280,7 +289,6 @@ function App() {
   // remove favorite movie handler
   const onRemoveFavoriteMovie = (favoriteMovieID) => {
     const token = localStorage.getItem('token');
-
     mainApi
       .removeFavoriteMovie(favoriteMovieID, {
         'Content-type': 'application/json',
@@ -300,10 +308,13 @@ function App() {
 
   // submit form into saved movies
   const onSubmitSavedMoviesForm = (checkbox) => {
-    const inputValue = moviesSearchRequest.inputValue
+    const inputValue = savedMoviesSearchRequest.inputValue
       .trim()
       .toLocaleLowerCase();
-    const checkboxState = checkbox !== undefined ? checkbox : savedMoviesSearchRequest.checkboxState;
+    const checkboxState =
+      checkbox !== undefined
+        ? checkbox
+        : savedMoviesSearchRequest.checkboxState;
 
     const currentFiltrerdMovies = filterOutMovies(
       savedMovies,
@@ -311,7 +322,12 @@ function App() {
       checkboxState
     );
 
-    setSavedMovies(currentFiltrerdMovies);
+    if (currentFiltrerdMovies.length) {
+      setIsShowNoResultMessageForSavedMovies(false);
+    } else {
+      setIsShowNoResultMessageForSavedMovies(true);
+    }
+    setSavedFiltredMovies(currentFiltrerdMovies);
   };
 
   return (
@@ -356,6 +372,7 @@ function App() {
                   checkFiltredMoviesLength={checkFiltredMoviesLength}
                   filtredMovies={filtredMovies}
                   setFiltredMovies={setFiltredMovies}
+                  location={location.pathname}
                 />
               }
             />
@@ -366,10 +383,19 @@ function App() {
                   isLoggedIn={isLoggedIn}
                   element={SavedMovies}
                   savedMovies={savedMovies}
+                  savedFiltredMovies={savedFiltredMovies}
+                  setSavedFiltredMovies={setSavedFiltredMovies}
                   onRemoveFavoriteMovie={onRemoveFavoriteMovie}
                   onChangeRequestData={setSavedMoviesSearchRequest}
                   savedMoviesSearchRequest={savedMoviesSearchRequest}
                   onSearchMovies={onSubmitSavedMoviesForm}
+                  isShowNoResultMessageForSavedMovies={
+                    isShowNoResultMessageForSavedMovies
+                  }
+                  setIsShowNoResultMessageForSavedMovies={
+                    setIsShowNoResultMessageForSavedMovies
+                  }
+                  location={location.pathname}
                 />
               }
             />
@@ -381,15 +407,18 @@ function App() {
                   element={Profile}
                   onSignOut={onSignOut}
                   onUpdateProfile={onUpdateProfile}
+                  location={location.pathname}
                 />
               }
             />
+
             <Route
               path='/signin'
               element={
                 <Login externalClass='app__login-container' onLogin={onLogin} />
               }
             />
+
             <Route
               path='/signup'
               element={

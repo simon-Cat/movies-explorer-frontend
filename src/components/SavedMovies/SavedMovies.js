@@ -1,5 +1,8 @@
 import './SavedMovies.css';
 import { SearchForm, MoviesCardList } from '../';
+import { useEffect } from 'react';
+import { NoResults } from '../';
+import { filterOutMovies } from '../../utils/utilsFuncs';
 
 const SavedMovies = ({
   externalClass,
@@ -8,7 +11,18 @@ const SavedMovies = ({
   savedMoviesSearchRequest,
   onChangeRequestData,
   onSearchMovies,
+  savedFiltredMovies,
+  setSavedFiltredMovies,
+  isShowNoResultMessageForSavedMovies,
 }) => {
+  useEffect(() => {
+    if (!savedMoviesSearchRequest.inputValue) {
+      setSavedFiltredMovies(savedMovies);
+    } else {
+      const curr = filterOutMovies(savedMovies, savedMoviesSearchRequest.inputValue, savedMoviesSearchRequest.checkboxState);
+      setSavedFiltredMovies(curr);
+    }
+  }, [savedMovies]);
 
   return (
     <section className={`saved-movies-container ${externalClass}`}>
@@ -17,12 +31,13 @@ const SavedMovies = ({
         onSubmit={onSearchMovies}
         onChangeRequestData={onChangeRequestData}
       />
-      {savedMovies.length ? (
+      {savedFiltredMovies.length ? (
         <MoviesCardList
           onRemoveFavoriteMovie={onRemoveFavoriteMovie}
-          movies={savedMovies}
+          movies={savedFiltredMovies}
         />
       ) : null}
+      { isShowNoResultMessageForSavedMovies &&  <NoResults /> }
     </section>
   );
 };
