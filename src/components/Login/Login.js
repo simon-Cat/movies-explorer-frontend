@@ -4,10 +4,21 @@ import { Form } from '../';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as auth from '../../utils/auth';
+import { useEffect } from 'react';
 
 const Login = ({ externalClass, onLogin }) => {
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const path = location.pathname;
+    if (token && (path === '/signin' || path === '/signup')) {
+      navigate('/', {replace: true});
+    }
+  }, [])
+
+  const location = useLocation();
   // navigate
   const navigate = useNavigate();
   // login form validation

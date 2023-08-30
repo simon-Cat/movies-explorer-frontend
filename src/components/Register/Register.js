@@ -1,12 +1,25 @@
 import './Register.css';
 import logo from '../../images/icons/logo-min.svg';
 import { Form } from '../';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
 import * as auth from '../../utils/auth';
+import { useEffect } from 'react';
 
 const Register = ({ externalClass, onLogin }) => {
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const path = location.pathname;
+    if (token && (path === '/signin' || path === '/signup')) {
+      navigate('/', {replace: true});
+    }
+  }, [])
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
   // register form validation
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
