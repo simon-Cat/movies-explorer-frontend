@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
 import mainApi from '../../utils/MainApi';
+import { ERROR_MESSAGE } from '../../utils/data';
 
 const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   // context
@@ -14,7 +15,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
     useFormWithValidation();
 
   // response error
-  const { responseError, setResponseError } = useResponseError();
+  const { responseError, setResponseError } = useResponseError('');
 
   // success update profile message
   const [successUpdateMessage, setSuccessUpdateMessage] = useState('');
@@ -62,6 +63,9 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    setResponseError('');
+    setSuccessUpdateMessage('');
+
     mainApi
       .updateProfileInfo(values, {
         'Content-Type': 'application/json',
@@ -72,7 +76,11 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
         setSuccessUpdateMessage('Данные успешно обновлены');
       })
       .catch((err) => {
-        setResponseError(err);
+        if (!err.code) {
+          setResponseError(ERROR_MESSAGE.serverError);
+        } else {
+          setResponseError(err.message);
+        }
       });
   };
 
@@ -131,6 +139,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
               value={values.email}
               required
               type='email'
+              pattern='^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
               className='profile-container__input'
               placeholder='Введите email'
             />

@@ -7,16 +7,16 @@ import { useResponseError } from '../../hooks/useResponseError';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as auth from '../../utils/auth';
 import { useEffect } from 'react';
+import { ERROR_MESSAGE } from '../../utils/data';
 
 const Login = ({ externalClass, onLogin }) => {
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     const path = location.pathname;
     if (token && (path === '/signin' || path === '/signup')) {
-      navigate('/', {replace: true});
+      navigate('/', { replace: true });
     }
-  }, [])
+  }, []);
 
   const location = useLocation();
   // navigate
@@ -33,13 +33,20 @@ const Login = ({ externalClass, onLogin }) => {
     auth
       .login(values)
       .then((res) => {
-        if (res.err) {
-          return Promise.reject(res);
-        }
+        console.log('asdasdasdasd');
+        // if (res.err || res.error) {
+        //   return Promise.reject(res);
+        // }
         onLogin(res.token);
         navigate('/movies', { replace: true });
       })
       .catch((err) => {
+        console.log(err);
+        if (err.error === 'Bad Request') {
+          const message = ERROR_MESSAGE.loginError;
+          setResponseError(message);
+          return;
+        }
         setResponseError(err.message);
       })
       .finally(() => {
@@ -70,9 +77,10 @@ const Login = ({ externalClass, onLogin }) => {
             <input
               id='user-email'
               name='email'
-              type='email'
+              type='text'
               className='form-container__input'
               placeholder='Введите почту'
+              pattern='^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
               required
               onInput={(e) => {
                 handleChange(e);

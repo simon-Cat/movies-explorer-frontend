@@ -32,9 +32,13 @@ const Register = ({ externalClass, onLogin }) => {
     auth
       .register(values)
       .then((res) => {
-        if (res.err) {
+        console.log('регистрируем нового пользователя');
+        if (res.err || res.error) {
+          console.log('при регистрации есть ошибка');
+
           return Promise.reject(res);
         }
+        console.log('при регистрации нет ошибки');
         const { email } = res;
         const { password } = values;
         auth.login({email, password})
@@ -43,6 +47,13 @@ const Register = ({ externalClass, onLogin }) => {
         })
       })
       .catch((err) => {
+        console.log('при регистрации перешли в блок catch');
+        if (err.error === 'Bad Request') {
+          const message = 'На сервере произошла ошибка';
+          setResponseError(message);
+          return;
+        }
+
         setResponseError(err.message);
       })
       .finally(() => {
@@ -98,6 +109,7 @@ const Register = ({ externalClass, onLogin }) => {
               type='email'
               className='form-container__input'
               placeholder='Введите почту'
+              pattern='^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
               required
               onInput={(e) => {
                 handleChange(e);

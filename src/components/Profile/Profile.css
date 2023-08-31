@@ -51,14 +51,14 @@
   font-weight: 400;
 }
 
-.form-container__form-error {
+.profile-container__form-error {
   color: #ff4062;
   height: 12px;
-  /* margin-bottom: 69px; */
   margin-top: 69px;
   font-size: 10px;
   font-weight: 400;
   display: block;
+  text-align: center;
 }
 
 .profile-container__form-success {

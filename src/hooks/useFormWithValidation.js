@@ -10,7 +10,18 @@ export function useFormWithValidation() {
     const name = target.name;
     const value = target.value;
     setValues({...values, [name]: value});
-    setErrors({...errors, [name]: target.validationMessage });
+    setErrors((errors) => {
+      if (name === 'email') {
+        if (target.validity.valueMissing) {
+          target.setCustomValidity('Пожалуйста, заполните это поле.')
+        } else if (target.validity.patternMismatch) {
+          target.setCustomValidity('Email должен соответствовать шаблону: someemail@maileprovider.ru.')
+        } else {
+          target.setCustomValidity('')
+        }
+      }
+      return {...errors, [name]: target.validationMessage};
+    });
     setIsValid(target.closest('form').checkValidity());
   };
 
