@@ -6,16 +6,16 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
 import * as auth from '../../utils/auth';
 import { useEffect } from 'react';
+import { ERROR_MESSAGE } from '../../utils/data';
 
 const Register = ({ externalClass, onLogin }) => {
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     const path = location.pathname;
     if (token && (path === '/signin' || path === '/signup')) {
-      navigate('/', {replace: true});
+      navigate('/', { replace: true });
     }
-  }, [])
+  }, []);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,28 +32,25 @@ const Register = ({ externalClass, onLogin }) => {
     auth
       .register(values)
       .then((res) => {
-        console.log('регистрируем нового пользователя');
         if (res.err || res.error) {
-          console.log('при регистрации есть ошибка');
+          const errorStatusCode = res.err?.statusCode || res.statusCode;
 
-          return Promise.reject(res);
+          if (errorStatusCode === 401) {
+            throw new Error(res.message);
+          } else if (errorStatusCode === 400) {
+            throw new Error(ERROR_MESSAGE.registerError);
+          } else if (errorStatusCode === 409) {
+            throw new Error(ERROR_MESSAGE.conflictError);
+          }
+        } else {
+          const { email } = res;
+          const { password } = values;
+          auth.login({ email, password }).then(({ token }) => {
+            onLogin(token);
+          });
         }
-        console.log('при регистрации нет ошибки');
-        const { email } = res;
-        const { password } = values;
-        auth.login({email, password})
-        .then(({token}) => {
-          onLogin(token);
-        })
       })
       .catch((err) => {
-        console.log('при регистрации перешли в блок catch');
-        if (err.error === 'Bad Request') {
-          const message = 'На сервере произошла ошибка';
-          setResponseError(message);
-          return;
-        }
-
         setResponseError(err.message);
       })
       .finally(() => {

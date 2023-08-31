@@ -72,15 +72,23 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       })
       .then((res) => {
-        onUpdateProfile(values);
-        setSuccessUpdateMessage('Данные успешно обновлены');
+        if (res.err || res.error) {
+          const errorStatusCode = res.err?.statusCode || res.statusCode;
+
+          if (errorStatusCode === 401) {
+            throw new Error(res.message);
+          } else if (errorStatusCode === 400) {
+            throw new Error(ERROR_MESSAGE.registerError);
+          } else if (errorStatusCode === 409) {
+            throw new Error(ERROR_MESSAGE.conflictError);
+          }
+        } else {
+          onUpdateProfile(values);
+          setSuccessUpdateMessage('Данные успешно обновлены');
+        }
       })
       .catch((err) => {
-        if (!err.code) {
-          setResponseError(ERROR_MESSAGE.serverError);
-        } else {
-          setResponseError(err.message);
-        }
+        setResponseError(err.message);
       });
   };
 

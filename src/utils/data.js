@@ -82,3 +82,13 @@ export const MOVIES_COUNT_FOR_SMALL_WIDTH = {
 
 // short movies duration
 export const SHORT_MOVIE_DURATION = 40;
+
+// error text messages
+export const ERROR_MESSAGE = {
+  conflictError: 'Пользователь с таким email уже существует',
+  loginError: 'При авторизации пользователя произошла ошибка',
+  registerError: 'При регистрации пользователя произошла ошибка',
+  profileUpdateError: 'При обновлении профиля произошла ошибка',
+  serverError: 'На сервере призошла ошибка',
+
+}

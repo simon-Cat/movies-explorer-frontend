@@ -33,20 +33,20 @@ const Login = ({ externalClass, onLogin }) => {
     auth
       .login(values)
       .then((res) => {
-        console.log('asdasdasdasd');
-        // if (res.err || res.error) {
-        //   return Promise.reject(res);
-        // }
-        onLogin(res.token);
-        navigate('/movies', { replace: true });
+        if (res.err || res.error) {
+          const errorStatusCode = res.err?.statusCode || res.statusCode;
+
+          if (errorStatusCode === 401) {
+            throw new Error(res.message);
+          } else if (errorStatusCode === 400) {
+            throw new Error(ERROR_MESSAGE.loginError);
+          }
+        } else {
+          onLogin(res.token);
+          navigate('/movies', { replace: true });
+        }
       })
       .catch((err) => {
-        console.log(err);
-        if (err.error === 'Bad Request') {
-          const message = ERROR_MESSAGE.loginError;
-          setResponseError(message);
-          return;
-        }
         setResponseError(err.message);
       })
       .finally(() => {

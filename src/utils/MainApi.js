@@ -1,4 +1,5 @@
-import { MAIN_API_URL } from './baseUrls';
+import { MAIN_API_URL } from "./baseUrls";
+import { ERROR_MESSAGE } from "./data";
 
 // API Class
 class MainApi {
@@ -11,64 +12,81 @@ class MainApi {
     if (response.ok) {
       return response.json();
     } else {
-      if (response.status === 409) {
-        return Promise.reject('Пользователь с таким email уже существует');
-      } else {
-        return Promise.reject('Ошибка запроса!');
-      }
+      return Promise.reject("Ошибка запроса!");
     }
   }
 
   // получить данные пользователя
   getUserInfo(headers) {
     return fetch(`${this.url}/users/me`, {
-      method: 'GET',
+      method: "GET",
       headers: headers,
-    }).then((res) => {
-      return this._checkResponseStatus(res);
-    });
+    })
+      .then((res) => {
+        return this._checkResponseStatus(res);
+      })
+      .catch((err) => {
+        throw new Error(ERROR_MESSAGE.serverError);
+      });
   }
 
   // обновить данные порфиля
   updateProfileInfo({ name, email }, headers) {
     return fetch(`${this.url}/users/me`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: headers,
       body: JSON.stringify({ name, email }),
-    }).then((res) => {
-      return this._checkResponseStatus(res);
-    });
+    })
+      .then((res) => {
+        // return this._checkResponseStatus(res);
+        return res.json();
+      })
+      .catch((err) => {
+        throw new Error(ERROR_MESSAGE.serverError);
+      });
   }
 
   // get savde movies
   getSavedMovies(headers) {
     return fetch(`${MAIN_API_URL}/movies`, {
-      method: 'GET',
+      method: "GET",
       headers: headers,
-    }).then((res) => {
-      return this._checkResponseStatus(res);
     })
+      .then((res) => {
+        return this._checkResponseStatus(res);
+      })
+      .catch((err) => {
+        throw new Error(ERROR_MESSAGE.serverError);
+      });
   }
 
   // add movies into favorites
   addFavoriteMovie(favoriteMovie, headers) {
     return fetch(`${this.url}/movies`, {
-      method: 'POST',
+      method: "POST",
       headers: headers,
       body: JSON.stringify(favoriteMovie),
-    }).then((res) => {
-      return this._checkResponseStatus(res);
-    });
+    })
+      .then((res) => {
+        return this._checkResponseStatus(res);
+      })
+      .catch((err) => {
+        throw new Error(ERROR_MESSAGE.serverError);
+      });
   }
 
   // remove movies from favorites
   removeFavoriteMovie(favoriteMovieID, headers) {
     return fetch(`${this.url}/movies/${favoriteMovieID}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: headers,
-    }).then((res) => {
-      return this._checkResponseStatus(res);
-    });
+    })
+      .then((res) => {
+        return this._checkResponseStatus(res);
+      })
+      .catch((err) => {
+        throw new Error(ERROR_MESSAGE.serverError);
+      });
   }
 }
 

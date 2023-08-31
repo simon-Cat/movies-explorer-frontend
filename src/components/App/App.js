@@ -123,7 +123,7 @@ function App() {
           setCurrentUser({ ...currentUser, name, email });
         })
         .catch((err) => {
-          console.log(err);
+          alert(err.message);
         });
     } else return;
   }, [isLoggedIn]);
@@ -246,7 +246,7 @@ function App() {
         setSavedMovies(res);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.message);
       });
   };
 
@@ -282,7 +282,7 @@ function App() {
         setSavedMovies([...savedMovies, res]);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.message);
       });
   };
 
@@ -302,7 +302,7 @@ function App() {
         setSavedMovies(updateSavedMovies);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.message);
       });
   };
 
