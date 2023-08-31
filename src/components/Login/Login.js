@@ -6,7 +6,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as auth from '../../utils/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ERROR_MESSAGE } from '../../utils/data';
 
 const Login = ({ externalClass, onLogin }) => {
@@ -26,10 +26,13 @@ const Login = ({ externalClass, onLogin }) => {
     useFormWithValidation();
   // response error
   const { responseError, setResponseError } = useResponseError();
+  // disable form input when fetch
+  const [ isFetched, setIsFetched ] = useState(false);
 
   // sumbitHandler
   const submitHandler = () => {
     const form = document.forms[0];
+    setIsFetched(true);
     auth
       .login(values)
       .then((res) => {
@@ -44,6 +47,7 @@ const Login = ({ externalClass, onLogin }) => {
         } else {
           onLogin(res.token);
           navigate('/movies', { replace: true });
+          setIsFetched(false);
         }
       })
       .catch((err) => {
@@ -52,6 +56,7 @@ const Login = ({ externalClass, onLogin }) => {
       .finally(() => {
         resetForm();
         form.reset();
+        setIsFetched(false);
       });
   };
 
@@ -68,6 +73,7 @@ const Login = ({ externalClass, onLogin }) => {
         additionalLink='/signup'
         className={{ form: 'login-container__form' }}
         isFormValid={isValid}
+        isFetched={isFetched}
       >
         <ul className='form-container__inputs'>
           <li className='form-container__input-container'>
@@ -85,6 +91,7 @@ const Login = ({ externalClass, onLogin }) => {
               onInput={(e) => {
                 handleChange(e);
               }}
+              disabled={isFetched ? 'disabled' : ''}
             />
             <span className='form-container__input-error'>
               {errors.email || ''}
@@ -105,6 +112,7 @@ const Login = ({ externalClass, onLogin }) => {
               onInput={(e) => {
                 handleChange(e);
               }}
+              disabled={isFetched ? 'disabled' : ''}
             />
             <span className='form-container__input-error'>
               {errors.password || ''}

@@ -21,7 +21,10 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   const [successUpdateMessage, setSuccessUpdateMessage] = useState('');
 
   // is same user data
-  const [ isSameUserData, setIsSameUserData ] = useState(true);
+  const [isSameUserData, setIsSameUserData] = useState(true);
+
+  // disable form input when fetch
+  const [isFetched, setIsFetched] = useState(false);
 
   useEffect(() => {
     setValues({
@@ -35,8 +38,8 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
     onSignOut();
   };
 
-   // change input handler
-   const onChangeInputHandler = (e) => {
+  // change input handler
+  const onChangeInputHandler = (e) => {
     const inputname = e.target.name;
     const inputValue = e.target.value;
     const { name, email } = values;
@@ -57,7 +60,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
       }
     }
     handleChange(e);
-  }
+  };
 
   // sumbitHandler
   const submitHandler = (e) => {
@@ -65,6 +68,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
 
     setResponseError('');
     setSuccessUpdateMessage('');
+    setIsFetched(true);
 
     mainApi
       .updateProfileInfo(values, {
@@ -89,6 +93,9 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
       })
       .catch((err) => {
         setResponseError(err.message);
+      })
+      .finally(() => {
+        setIsFetched(false);
       });
   };
 
@@ -105,52 +112,54 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
         <ul className='profile-container__inputs-container'>
           <li className='profile-container__input-container'>
             <div className='profile-container__wrapper'>
-            <label
-              htmlFor='profile-name'
-              className='profile-container__input-label'
-            >
-              Имя
-            </label>
-            <input
-              id='profile-name'
-              minLength='2'
-              maxLength='30'
-              type='text'
-              value={values.name}
-              onInput={(e) => {
-                onChangeInputHandler(e);
-              }}
-              required
-              name='name'
-              className='profile-container__input'
-              placeholder='Введите имя'
-            />
+              <label
+                htmlFor='profile-name'
+                className='profile-container__input-label'
+              >
+                Имя
+              </label>
+              <input
+                id='profile-name'
+                minLength='2'
+                maxLength='30'
+                type='text'
+                value={values.name}
+                onInput={(e) => {
+                  onChangeInputHandler(e);
+                }}
+                required
+                name='name'
+                className='profile-container__input'
+                placeholder='Введите имя'
+                disabled={isFetched ? 'disabled' : ''}
+              />
             </div>
             <span className='profile-container__input-error'>
               {errors.name || ''}
             </span>
           </li>
           <li className='profile-container__input-container'>
-          <div className='profile-container__wrapper'>
-            <label
-              htmlFor='profile-email'
-              className='profile-container__input-label'
-            >
-              E-mail
-            </label>
-            <input
-              id='profile-email'
-              onInput={(e) => {
-                onChangeInputHandler(e);
-              }}
-              name='email'
-              value={values.email}
-              required
-              type='email'
-              pattern='^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
-              className='profile-container__input'
-              placeholder='Введите email'
-            />
+            <div className='profile-container__wrapper'>
+              <label
+                htmlFor='profile-email'
+                className='profile-container__input-label'
+              >
+                E-mail
+              </label>
+              <input
+                id='profile-email'
+                onInput={(e) => {
+                  onChangeInputHandler(e);
+                }}
+                name='email'
+                value={values.email}
+                required
+                type='email'
+                pattern='^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
+                className='profile-container__input'
+                placeholder='Введите email'
+                disabled={isFetched ? 'disabled' : ''}
+              />
             </div>
             <span className='profile-container__input-error'>
               {errors.email || ''}
@@ -165,7 +174,9 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
         </span>
         <button
           className={`profile-container__form-button ${
-            (!isValid || isSameUserData) ? 'profile-container__form-button_disabled' : ''
+            !isValid || isSameUserData || isFetched
+              ? 'profile-container__form-button_disabled'
+              : ''
           }`}
         >
           Редактировать

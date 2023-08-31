@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useResponseError } from '../../hooks/useResponseError';
 import * as auth from '../../utils/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ERROR_MESSAGE } from '../../utils/data';
 
 const Register = ({ externalClass, onLogin }) => {
@@ -25,10 +25,13 @@ const Register = ({ externalClass, onLogin }) => {
     useFormWithValidation();
   // response error
   const { responseError, setResponseError } = useResponseError();
+  // disable form input when fetch
+  const [ isFetched, setIsFetched ] = useState(false);
 
   // sumbitHandler
   const submitHandler = () => {
     const form = document.forms[0];
+    setIsFetched(true);
     auth
       .register(values)
       .then((res) => {
@@ -47,6 +50,7 @@ const Register = ({ externalClass, onLogin }) => {
           const { password } = values;
           auth.login({ email, password }).then(({ token }) => {
             onLogin(token);
+            setIsFetched(false);
           });
         }
       })
@@ -56,6 +60,7 @@ const Register = ({ externalClass, onLogin }) => {
       .finally(() => {
         resetForm();
         form.reset();
+        setIsFetched(false);
       });
   };
 
@@ -73,6 +78,7 @@ const Register = ({ externalClass, onLogin }) => {
         additionalLink='/signin'
         className={{ form: 'register-container__form' }}
         isFormValid={isValid}
+        isFetched={isFetched}
       >
         <ul className='form-container__inputs'>
           <li className='form-container__input-container'>
@@ -91,6 +97,7 @@ const Register = ({ externalClass, onLogin }) => {
               onInput={(e) => {
                 handleChange(e);
               }}
+              disabled={isFetched ? 'disabled' : ''}
             />
             <span className='form-container__input-error'>
               {errors.name || ''}
@@ -111,6 +118,7 @@ const Register = ({ externalClass, onLogin }) => {
               onInput={(e) => {
                 handleChange(e);
               }}
+              disabled={isFetched ? 'disabled' : ''}
             />
             <span className='form-container__input-error'>
               {errors.email || ''}
@@ -131,6 +139,7 @@ const Register = ({ externalClass, onLogin }) => {
               onInput={(e) => {
                 handleChange(e);
               }}
+              disabled={isFetched ? 'disabled' : ''}
             />
             <span className='form-container__input-error'>
               {errors.password || ''}

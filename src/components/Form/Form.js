@@ -8,6 +8,7 @@ const Form = ({
   additionalLink,
   isFormValid,
   className,
+  isFetched
 }) => {
   // sumbitHandler
   const submitHandler = (e) => {
@@ -25,9 +26,9 @@ const Form = ({
       {children}
       <button
         type='sumbit'
-        disabled={!isFormValid}
+        disabled={!isFormValid || isFetched}
         className={`form-container__form-button ${
-          !isFormValid ? 'form-container__form-button_disabled' : ''
+          (!isFormValid || isFetched) ? 'form-container__form-button_disabled' : ''
         }`}
       >
         {type === 'register' ? 'Зарегистрироваться' : 'Войти'}
