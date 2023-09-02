@@ -11,7 +11,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   const currentUser = useContext(CurrentUserContext);
 
   // profile form validation
-  const { values, setValues, handleChange, errors, isValid, resetForm } =
+  const { values, setValues, handleChange, errors, isValid, setIsValid } =
     useFormWithValidation();
 
   // response error
@@ -34,6 +34,11 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
     });
   }, [currentUser]);
 
+  useEffect(() => {
+    const isValid = document.forms[0].checkValidity();
+    setIsValid(isValid);
+  }, [values]);
+
   const singOutHandler = () => {
     onSignOut();
   };
@@ -42,7 +47,10 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
   const onChangeInputHandler = (e) => {
     const inputname = e.target.name;
     const inputValue = e.target.value;
-    const { name, email } = values;
+
+    const { email, name } = values;
+
+    handleChange(e);
 
     if (inputname === 'name') {
       const emailValue = email;
@@ -59,7 +67,6 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
         setIsSameUserData(false);
       }
     }
-    handleChange(e);
   };
 
   // sumbitHandler
@@ -82,7 +89,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
           if (errorStatusCode === 401) {
             throw new Error(res.message);
           } else if (errorStatusCode === 400) {
-            throw new Error(ERROR_MESSAGE.registerError);
+            throw new Error(ERROR_MESSAGE.profileUpdateError);
           } else if (errorStatusCode === 409) {
             throw new Error(ERROR_MESSAGE.conflictError);
           }
@@ -96,6 +103,7 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
       })
       .finally(() => {
         setIsFetched(false);
+        setIsSameUserData(true);
       });
   };
 
@@ -173,8 +181,9 @@ const Profile = ({ extrenalClass, onSignOut, onUpdateProfile }) => {
           {successUpdateMessage || ''}
         </span>
         <button
+          disabled= {(!isValid || isSameUserData || isFetched) ? 'disabled' : ''}
           className={`profile-container__form-button ${
-            !isValid || isSameUserData || isFetched
+            (!isValid || isSameUserData || isFetched)
               ? 'profile-container__form-button_disabled'
               : ''
           }`}
