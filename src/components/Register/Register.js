@@ -9,6 +9,10 @@ import { useEffect, useState } from 'react';
 import { ERROR_MESSAGE } from '../../utils/data';
 
 const Register = ({ externalClass, onLogin }) => {
+  // register form validation
+  const { values, handleChange, errors, isValid, setIsValid, resetForm } =
+    useFormWithValidation();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     const path = location.pathname;
@@ -17,12 +21,14 @@ const Register = ({ externalClass, onLogin }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const isValid = document.forms[0].checkValidity();
+    setIsValid(isValid);
+  }, [values]);
+
   const location = useLocation();
   const navigate = useNavigate();
 
-  // register form validation
-  const { values, handleChange, errors, isValid, resetForm } =
-    useFormWithValidation();
   // response error
   const { responseError, setResponseError } = useResponseError();
   // disable form input when fetch

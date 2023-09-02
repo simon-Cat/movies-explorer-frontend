@@ -10,6 +10,10 @@ import { useEffect, useState } from 'react';
 import { ERROR_MESSAGE } from '../../utils/data';
 
 const Login = ({ externalClass, onLogin }) => {
+  // login form validation
+  const { values, handleChange, errors, isValid, setIsValid, resetForm } =
+    useFormWithValidation();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     const path = location.pathname;
@@ -18,12 +22,14 @@ const Login = ({ externalClass, onLogin }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const isValid = document.forms[0].checkValidity();
+    setIsValid(isValid);
+  }, [values]);
+
   const location = useLocation();
   // navigate
   const navigate = useNavigate();
-  // login form validation
-  const { values, handleChange, errors, isValid, resetForm } =
-    useFormWithValidation();
   // response error
   const { responseError, setResponseError } = useResponseError();
   // disable form input when fetch
