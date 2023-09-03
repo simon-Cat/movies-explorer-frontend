@@ -40,6 +40,16 @@
   color: #a0a0a0;
 }
 
+.search-form-container__input-message {
+  color: #ff4062;
+  height: 12px;
+  font-size: 10px;
+  font-weight: 400;
+  display: block;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
 .search-form-container__checkbox {
   padding-left: 29px;
 }

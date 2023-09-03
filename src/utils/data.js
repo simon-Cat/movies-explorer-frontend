@@ -1,8 +1,16 @@
 // data for Techs
-export const technologies = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
+export const TECHNOLOGIES = [
+  'HTML',
+  'CSS',
+  'JS',
+  'React',
+  'Git',
+  'Express.js',
+  'mongoDB',
+];
 
 // data for Portfolio
-export const portfolio = [
+export const PORTFOLIO = [
   {
     title: 'Статичный сайт',
     url: 'https://github.com/simon-Cat/how-to-learn',
@@ -18,19 +26,19 @@ export const portfolio = [
 ];
 
 // data for Footer
-export const links = [
+export const LINKS = [
   {
     title: 'Яндекс.Практикум',
     url: 'https://practicum.yandex.ru/',
   },
   {
     title: 'Github',
-    url: 'https://github.com/simon-Cat'
-  }
+    url: 'https://github.com/simon-Cat',
+  },
 ];
 
 // data for NavTab
-export const navLinks = [
+export const NAVLINKS = [
   {
     title: 'Фильмы',
     url: '/movies',
@@ -38,11 +46,11 @@ export const navLinks = [
   {
     title: 'Сохранённые фильмы',
     url: '/saved-movies',
-  }
+  },
 ];
 
 // data for navigation
-export const navigationLinks = [
+export const NAVIGATION_LINKS = [
   {
     title: 'Главная',
     url: '/',
@@ -54,202 +62,33 @@ export const navigationLinks = [
   {
     title: 'Сохранённые фильмы',
     url: '/saved-movies',
-  }
+  },
 ];
 
-// test data for movies
-export const movies = [
-  {
-    id: 1,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: true,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 2,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 3,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: true,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 4,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 5,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 6,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 7,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 8,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: true,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 9,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 10,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 11,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 12,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 13,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 14,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 15,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 16,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 17,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 18,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 19,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 20,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 21,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 22,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 23,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 24,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  }
-];
+// window's width
+export const WINDOW_WIDTH_LARGE = 768;
 
-// test data for saved movies
-export const savedMovies = [
-  {
-    id: 22,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 23,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  },
-  {
-    id: 24,
-    title: '33 слова о дизайне',
-    duration: '1ч42м',
-    like: false,
-    url: 'https://avatars.mds.yandex.net/i?id=48afb62a66698093f5d9268b5ddc1fe93b79d702-9040073-images-thumbs&n=13',
-  }
-];
+// movie's count for large window's width
+export const MOVIES_COUNT_FOR_LARGE_WIDTH = {
+  initialCount: 16,
+  additionalCount: 4
+};
+
+// movie's count for small window's width
+export const MOVIES_COUNT_FOR_SMALL_WIDTH = {
+  initialCount: 5,
+  additionalCount: 2
+};
+
+// short movies duration
+export const SHORT_MOVIE_DURATION = 40;
+
+// error text messages
+export const ERROR_MESSAGE = {
+  conflictError: 'Пользователь с таким email уже существует',
+  loginError: 'При авторизации пользователя произошла ошибка',
+  registerError: 'При регистрации пользователя произошла ошибка',
+  profileUpdateError: 'При обновлении профиля произошла ошибка',
+  serverError: 'На сервере призошла ошибка',
+
+}

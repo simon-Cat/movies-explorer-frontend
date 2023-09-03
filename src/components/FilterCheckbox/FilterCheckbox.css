@@ -13,7 +13,7 @@
 
 .filter-checkbox-container__custom-checkbox {
   width: 36px;
-  background: #EBEBEB;
+  background: #ebebeb;
   border-radius: 20px;
   height: 20px;
   display: flex;
@@ -27,15 +27,15 @@
   height: 16px;
   border: 1px #fff solid;
   border-radius: 50%;
-  transition: transform .3s ease, background .3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .filter-checkbox-container__custom-checkbox-switcher_state_on {
   transform: translateX(16px);
-  background: #2BE080;
+  background: #2be080;
 }
 .filter-checkbox-container__custom-checkbox-switcher_state_off {
-  background: #F5F5F5;
+  background: #f5f5f5;
 }
 
 .filter-checkbox-container__text {

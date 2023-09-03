@@ -1,12 +1,37 @@
 import './Form.css';
 import { Link } from 'react-router-dom';
 
-const Form = ({ children, type, submitHandler = null, additionalLink, className }) => {
+const Form = ({
+  children,
+  type,
+  handleSubmit,
+  additionalLink,
+  isFormValid,
+  className,
+  isFetched
+}) => {
+  // sumbitHandler
+  const submitHandler = (e) => {
+    e.preventDefault();
+    handleSubmit();
+  };
+
   return (
-    <form className={`form-container ${className.form}`}>
+    <form
+      onSubmit={(e) => {
+        submitHandler(e);
+      }}
+      className={`form-container ${className.form}`}
+    >
       {children}
-      <button className='form-container__form-button'>
-        { type === 'register' ? 'Зарегистрироваться' : 'Войти' }
+      <button
+        type='sumbit'
+        disabled={!isFormValid || isFetched}
+        className={`form-container__form-button ${
+          (!isFormValid || isFetched) ? 'form-container__form-button_disabled' : ''
+        }`}
+      >
+        {type === 'register' ? 'Зарегистрироваться' : 'Войти'}
       </button>
       <div className='form-container__addition'>
         {type === 'register' ? (

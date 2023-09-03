@@ -39,10 +39,18 @@
 .form-container__input-error {
   color: #ff4062;
   height: 12px;
-  margin-bottom: 69px;
   font-size: 10px;
   font-weight: 400;
   display: block;
+}
+
+.form-container__form-error {
+  color: #ff4062;
+  height: 12px;
+  font-size: 10px;
+  font-weight: 400;
+  display: block;
+  text-align: center;
 }
 
 .form-container__input-error_page_login {
@@ -60,6 +68,17 @@
   font-weight: 500;
   border-radius: 3px;
   margin-bottom: 16px;
+}
+
+.form-container__form-button_disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+  transition: none;
+  cursor: default;
+}
+
+.form-container__form-button_disabled:hover {
+  opacity: 1;
 }
 
 .form-container__addition {

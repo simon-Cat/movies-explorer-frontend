@@ -9,7 +9,7 @@ const Main = ({ externalClass }) => {
       <Techs />
       <AboutMe />
     </>
-  )
+  );
 };
 
 export default Main;

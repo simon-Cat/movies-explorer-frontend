@@ -2,7 +2,14 @@ import './MoviesCardList.css';
 import { MoviesCard } from '../';
 import { useLocation } from 'react-router-dom';
 
-const MoviesCardList = ({ cards }) => {
+const MoviesCardList = ({
+  onShowNextMovies,
+  isNextMoviesButtonShowed,
+  savedMovies,
+  movies,
+  onAddFavoriteMovie,
+  onRemoveFavoriteMovie,
+}) => {
   const location = useLocation();
 
   return (
@@ -14,12 +21,25 @@ const MoviesCardList = ({ cards }) => {
       }`}
     >
       <ul className={`movies-cards-container__list`}>
-        {cards.map((item, index) => (
-          <MoviesCard key={item.id} card={item} />
+        {movies.map((item, index) => (
+          <MoviesCard
+            savedMovies={savedMovies}
+            key={item.id || item.movieId}
+            onRemoveFavoriteMovie={onRemoveFavoriteMovie}
+            onAddFavoriteMovie={onAddFavoriteMovie}
+            card={item}
+          />
         ))}
       </ul>
       {location.pathname === '/movies' && (
-        <button className='movies-cards-container__button'>Ещё</button>
+        <button
+          onClick={onShowNextMovies}
+          className={`movies-cards-container__button ${
+            !isNextMoviesButtonShowed && 'movies-cards-container__button_hidden'
+          }`}
+        >
+          Ещё
+        </button>
       )}
     </section>
   );
