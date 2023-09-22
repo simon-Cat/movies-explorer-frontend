@@ -2,7 +2,9 @@
 Frontend дипломного проекта по направлению "Веб-разработчик" от Яндекс.Практикум.
 
 Сервис, в котором можно найти фильмы по запросу и сохранить в личном кабинете.
-![ezgif com-optimize](https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/4206d3cb-5ac6-4aed-b7b0-561a2a7773f8)
+<div align="center">
+  <img width="500" src="[https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/c74f5e94-2ad0-4626-9284-e80c61e47353](https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/4206d3cb-5ac6-4aed-b7b0-561a2a7773f8)">
+</div>
 
 ## Реализованные функции
 
@@ -17,13 +19,16 @@ Frontend дипломного проекта по направлению "Веб
 - обработка ошибок от API;
 - поиск фильмов по ключевому слову;
 - добавление фильмов в "избранное" и их удаление;
-  
-![поиск фильмов](https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/edb9cad7-7552-48c0-aa40-fdd41f5bab10)
-
-![сохраненные фильмы](https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/de8a4d14-9d6c-4e20-9149-323654d234ec)
+<div align="center">
+  <img width="500" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/c74f5e94-2ad0-4626-9284-e80c61e47353">
+</div>
+<div align="center">
+  <img width="500" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/de8a4d14-9d6c-4e20-9149-323654d234ec">
+</div>
 - редактирование данных профиля;
-  
-![профиль](https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/a11bf3be-c7da-4026-b47e-42c9b36a9b9f)
+<div align="center">
+  <img width="500" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/a11bf3be-c7da-4026-b47e-42c9b36a9b9f">
+</div>
 - адапитивная верстка.
 
 ## Используемые технологии
