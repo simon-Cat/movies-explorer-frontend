@@ -38,9 +38,10 @@ Frontend дипломного проекта по направлению "Веб
   <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/javascript/javascript-original.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/react/react-original.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
   <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/npm/npm-original-wordmark.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
-  <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/npm/npm-original-wordmark.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
 </div>
 
-Backend сервиса расположен в репозитории: 
+## Backend сервиса
+Backend сервиса расположен в [репозитории](https://github.com/simon-Cat/movies-explorer-api)
 
+## Ссылка на сервис
 Ссылка на задеплоенный на сервере проект: https://murtazaev-movie-explorer.nomoredomains.xyz/movies
