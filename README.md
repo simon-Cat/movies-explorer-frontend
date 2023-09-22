@@ -3,7 +3,7 @@ Frontend дипломного проекта по направлению "Веб
 
 Сервис, в котором можно найти фильмы по запросу и сохранить в личном кабинете.
 <div align="center">
-  <img width="500" src="[https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/c74f5e94-2ad0-4626-9284-e80c61e47353](https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/4206d3cb-5ac6-4aed-b7b0-561a2a7773f8)">
+  <img width="500" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/c74f5e94-2ad0-4626-9284-e80c61e47353">
 </div>
 
 ## Реализованные функции
