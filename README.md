@@ -26,9 +26,13 @@ Frontend дипломного проекта по направлению "Веб
 
 ## Используемые технологии
 
+<div>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/javascript/javascript-original.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/react/react-original.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
+</div>
 
 - local storage;
-- <img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original-wordmark.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
+- 
 - jwt
 - react
 - react-router.
