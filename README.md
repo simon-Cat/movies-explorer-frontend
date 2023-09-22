@@ -10,8 +10,8 @@ Frontend дипломного проекта по направлению "Веб
 - защита роутов авторизацией;
 - регистрация нового пользователя;
   
-<div>
-  <img align="center" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/c74f5e94-2ad0-4626-9284-e80c61e47353">
+<div align="center">
+  <img width="500" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/c74f5e94-2ad0-4626-9284-e80c61e47353">
 </div>
 - передача стейта посредством использования контекста;
 - обработка ошибок от API;
