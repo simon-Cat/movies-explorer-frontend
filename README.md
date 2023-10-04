@@ -18,9 +18,6 @@ Frontend дипломного проекта по направлению "Веб
   <li>поиск фильмов по ключевому слову;</li>
   <li>добавление фильмов в "избранное" и их удаление;
     <div>
-      <img width="600" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/c74f5e94-2ad0-4626-9284-e80c61e47353">
-    </div>
-    <div>
       <img width="600" src="https://github.com/simon-Cat/movies-explorer-frontend/assets/110557132/de8a4d14-9d6c-4e20-9149-323654d234ec">
     </div>
   </li>
