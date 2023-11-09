@@ -28,5 +28,10 @@
   <img src="https://raw.githubusercontent.com/devicons/devicon/55609aa5bd817ff167afce0d965585c92040787a/icons/npm/npm-original-wordmark.svg" title="Npm" alt="Npm" width="40" height="40"/>&nbsp;
 </div>
 
+## Запуск проекта
+
+Для запуска проекта используйте команду: npm run start
+
 ## Backend сервиса
+
 Backend сервиса расположен в [репозитории](https://github.com/simon-Cat/movies-explorer-api)
